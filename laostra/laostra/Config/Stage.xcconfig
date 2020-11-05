@@ -1,0 +1,15 @@
+//
+//  Stage.xcconfig
+//  laostra
+//
+//  Created by Daniel Mejia on 20/10/20.
+//  Copyright © 2020 Daniel Mejia. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "Pods/Target Support Files/Pods-laostra/Pods-laostra.stage.xcconfig"
+EMAIL_SERVICE_URL=http:/$()/35.209.235.122:8016/api/email/v1/
+MENU_SERVICE_URL=http:/$()/35.209.235.122:8015/api/menu/v1/
+USER_SERVICE_URL=http:/$()/35.209.235.122:8014/api/user/v1/

@@ -1,0 +1,75 @@
+/* 
+  Localizable.strings
+  laostra
+
+  Created by Daniel Mejia on 15/09/20.
+  Copyright © 2020 Daniel Mejia. All rights reserved.
+*/
+"required" = "Required field";
+"invalid_email" = "Invalid email";
+"invalid_password" = "Your password must contain at least 8 characters, one capital letter, one number and one symbol (!@#$%^&*_)";
+"password_must_contain" = "Your password must contain";
+"invalid_credentials" = "Incorrect email and/or password";
+"email_not_found" = "Unregistered email, you need to register";
+"registered_user_by_email" = "Registered user by Email";
+"created_account" = "Account created";
+"ready_to_order" = "¡Ready! You can order now";
+"server_error" = "Ocurred an error on server, try again later";
+"registered_user_by_apple" = "Registered user by Apple";
+"registered_user_by_facebook" = "Registered user by Facebook";
+"registered_user_by_google" = "Registered user by Google";
+"existing_promotion" = "This promotion is already added";
+"email" = "Email";
+"at_least_one_capital_letter" = "one capital letter";
+"at_least_one_number" = "one number";
+"at_least_one_symbol" = "one symbol";
+"must_be_over_15_years" = "You must be over 15 years old";
+"must_contain_5_digits" = "Must contain 5 digits";
+"hold_button_2_seconds" = "Hold the button for two seconds";
+"loading" = "Loading";
+"login" = "Login";
+"password" = "Password";
+"confirmation_code" = "Confirmation code";
+"send" = "Send";
+"confirmation_code_sent_%@" = "We have sent you a confirmation code to the email %@, enter it below:";
+"confirmation_code_not_sent" = "We could not send you the confirmation code, verify your email and click the send button:";
+"confirmed_email" = "Confirmed email";
+"incorrect_code" = "Incorrect code";
+"get_discount" = "Get a 5% discount!";
+"help_to_complete_your_profile" = "Help us complete your profile and preferences to give you a 5% discount on your next consumption:";
+"step_%lld" = "Step %lld of 3";
+"gender" = "Gender";
+"female" = "Female";
+"male" = "Male";
+"zip_code" = "Zip Code";
+"birthday" = "Birthday";
+"done" = "Done";
+"save" = "Save";
+"sign_up" = "Sign up";
+"create_account" = "Create account";
+"select_3_drinks" = "Select your 3 favorite drinks:";
+"select_3_dishes" = "Select your 3 favorite dishes:";
+"drink_%lld" = "Drink %lld";
+"dish_%lld" = "Dish %lld";
+"no_drinks" = "No drinks on the menu";
+"no_dishes" = "No dishes on the menu";
+"click_to_register" = "If you want to register with email click ";
+"here" = "here";
+"you_got_discount" = "You already have a 5% discount!";
+"can_use_discount" = "You can now use your 5% discount on your first order";
+"agreed" = "Agreed";
+"error_adding_promotion" = "There was an error adding the promotion";
+"welcome_discount" = "Welcome discount";
+"discount_description" = "Promotion for completing registration through the app";
+"active" = "Active";
+"used" = "Used";
+"search" = "Search";
+"dishes" = "Dishes";
+"drinks" = "Drinks";
+"menu" = "Menu";
+"orders" = "Orders";
+"promotions" = "Promotions";
+"profile" = "Profile";
+"preferences" = "Preferences";
+"logout" = "Logout";
+"no_promotions" = "You have no promotion";

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>527749036048-hdt35h1gb6de3kqca473p8h17snd0emv.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.527749036048-hdt35h1gb6de3kqca473p8h17snd0emv</string>
+	<key>API_KEY</key>
+	<string>AIzaSyADfnQfVCw_ajPxUnaeF6h8so0oh_5x0MY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>527749036048</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.laostra.laostra</string>
+	<key>PROJECT_ID</key>
+	<string>la-ostra</string>
+	<key>STORAGE_BUCKET</key>
+	<string>la-ostra.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:527749036048:ios:9363eb67000bbd96e4b295</string>
+	<key>DATABASE_URL</key>
+	<string>https://la-ostra.firebaseio.com</string>
+</dict>
+</plist>

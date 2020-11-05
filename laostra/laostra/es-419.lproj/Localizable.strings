@@ -1,0 +1,75 @@
+/* 
+  Localizable.strings
+  laostra
+
+  Created by Daniel Mejia on 15/09/20.
+  Copyright © 2020 Daniel Mejia. All rights reserved.
+*/
+"required" = "Campo requerido";
+"invalid_email" = "Correo inválido";
+"invalid_password" = "Tu contraseña debe contener por lo menos 8 caracteres, una letra mayúscula, un número y un símbolo (!@#$%^&*_)";
+"password_must_contain" = "Tu contraseña debe contener";
+"registered_user_by_email" = "Usuario registrado por correo electrónico";
+"invalid_credentials" = "Correo y/o contraseña incorrectos";
+"email_not_found" = "Correo no registrado, necesitas registrarte";
+"created_account" = "Cuenta creada";
+"ready_to_order" = "¡Listo! Ya puedes ordenar";
+"server_error" = "Ocurrió un error en el servidor, intente mas tarde";
+"registered_user_by_apple" = "Usuario registrado por Apple";
+"registered_user_by_facebook" = "Usuario registrado por Facebook";
+"registered_user_by_google" = "Usuario registrado por Google";
+"existing_promotion" = "Esta promoción ya esta agregada";
+"email" = "Correo electrónico";
+"at_least_one_capital_letter" = "una letra mayúscula";
+"at_least_one_number" = "un número";
+"at_least_one_symbol" = "un símbolo";
+"must_be_over_15_years" = "Debes tener más de 15 años";
+"must_contain_5_digits" = "Debe contener 5 dígitos";
+"hold_button_2_seconds" = "Mantenga presionado el botón durante dos segundos";
+"loading" = "Cargando";
+"login" = "Iniciar sesión";
+"password" = "Contraseña";
+"confirmation_code" = "Código de confirmación";
+"send" = "Enviar";
+"confirmation_code_sent_%@" = "Te hemos enviado un código de confirmación al correo %@, ingrésalo a continuación";
+"confirmation_code_not_sent" = "No pudimos enviarte el código de confirmación, verifica tu correo electrónico y dar clic en el botón enviar:";
+"confirmed_email" = "Correo electrónico confirmado";
+"incorrect_code" = "Código incorrecto";
+"get_discount" = "¡Obtén un 5% de descuento!";
+"help_to_complete_your_profile" = "Ayúdanos a complementar tu perfil y preferencias para darte un 5% de descuento en tu próximo consumo:";
+"step_%lld" = "Paso %lld de 3";
+"gender" = "Género";
+"female" = "Femenino";
+"male" = "Masculino";
+"zip_code" = "Código Postal";
+"birthday" = "Fecha de nacimiento";
+"done" = "Listo";
+"save" = "Guardar";
+"sign_up" = "Regístrate";
+"create_account" = "Crear cuenta";
+"select_3_drinks" = "Selecciona tus 3 bebidas favoritas:";
+"select_3_dishes" = "Selecciona tus 3 platillos favoritos:";
+"drink_%lld" = "Bebida %lld";
+"dish_%lld" = "Platillo %lld";
+"no_drinks" = "No hay bebidas en el menú";
+"no_dishes" = "No hay platillos en el menú";
+"click_to_register" = "Si quieres registrarte con email da clic ";
+"here" = "aquí";
+"you_got_discount" = "¡Ya tienes un 5% de descuento!";
+"can_use_discount" = "Ya puedes utilizar tu 5% de descuento en tu primer orden";
+"agreed" = "Entendido";
+"error_adding_promotion" = "Hubo un error al agregar la promoción";
+"welcome_discount" = "Descuento de bienvenida";
+"discount_description" = "Promoción por completar registro mediante la app";
+"active" = "Activa";
+"used" = "Utilizada";
+"search" = "Buscar";
+"dishes" = "Platillos";
+"drinks" = "Bebidas";
+"menu" = "Menú";
+"orders" = "Ordenes";
+"promotions" = "Promociones";
+"profile" = "Perfil";
+"preferences" = "Preferencias";
+"logout" = "Cerrar sesión";
+"no_promotions" = "No tienes ninguna promoción";
