@@ -37,7 +37,7 @@ struct PersonalData: View {
     }
     
     func updateProfile() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        hideKeyboard()
         // MARK: - Validate zipCode
         self.setErrors(validation: self.validationField.validateZipCode(value: self.zipCode))
         guard self.validationField.validateZipCode(value: self.zipCode).isValid else { return }
@@ -181,7 +181,7 @@ struct PersonalData: View {
                 self.birthday = userManager.user.birthday
             }
             .onTapGesture{
-                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                hideKeyboard()
             }
         }
     }

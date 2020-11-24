@@ -12,6 +12,7 @@ struct HorizontalDishList: View {
     var dishes: [Dish]
     var category: String
     var filter: String
+    @ObservedObject var dishManager : DishManager
     
     var body: some View {
         VStack {
@@ -32,7 +33,7 @@ struct HorizontalDishList: View {
                                 ForEach(self.dishes, id: \.id) { dish in
                                     Group {
                                         if self.category == dish.category.name {
-                                            DishCard(dish: dish)
+                                            DishCard(dish: dish, dishManager: self.dishManager)
                                         }
                                     }
                                 }

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct DrinkCard: View {
     var drink: Drink
@@ -14,10 +15,10 @@ struct DrinkCard: View {
     var body: some View {
         ZStack {
             VStack(alignment: .center) {
-                ImageFromUrl(imageUrl: drink.picture)
+                AnimatedImage(url: URL(string: drink.picture))
+                    .resizable()
+                    .scaledToFit()
                     .frame(width: 100, height: 120)
-                    .clipped()
-                    .background(Color.white)
                 Group {
                     VStack(alignment: .leading) {
                         Text("\(drink.name)")

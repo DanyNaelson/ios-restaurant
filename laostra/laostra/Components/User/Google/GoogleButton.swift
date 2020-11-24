@@ -22,7 +22,7 @@ struct GoogleButton: View {
     @ObservedObject var userManager : UserManager
     
     func signInGoogle(idToken: String) -> Void {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        hideKeyboard()
         self.loaderGoogle = true
         self.errorField = ""
         self.errorMessage = ""
@@ -41,6 +41,7 @@ struct GoogleButton: View {
                 if data["signUp"] == true {
                     self.viewNumber = 5
                 } else {
+                    self.selection = 1
                     self.showModal = false
                 }
             } else if data["ok"] == false {

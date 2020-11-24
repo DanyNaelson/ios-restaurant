@@ -10,15 +10,22 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct DishCard: View {
-    var dish: Dish
+    @State var dish: Dish
+    @State var showModal : Bool = false
+    @ObservedObject var dishManager : DishManager
+    @EnvironmentObject var appState : AppState
+    @SwiftUI.Environment(\.managedObjectContext) var context
     
     var body: some View {
         ZStack {
             VStack(alignment: .center) {
-                ImageFromUrl(imageUrl: dish.picture)
+                AnimatedImage(url: URL(string: dish.picture))
+                    .resizable()
+                    .scaledToFit()
                     .frame(width: 100, height: 120)
-                    .clipped()
-                    .background(Color.white)
+                    .onTapGesture {
+                        self.showModal.toggle()
+                    }
                 Group {
                     VStack(alignment: .leading) {
                         Text("\(dish.name)")
@@ -29,6 +36,11 @@ struct DishCard: View {
                 }
                     .background(Color("primary"))
                     .foregroundColor(Color.white)
+            }
+            .sheet(isPresented: self.$showModal) {
+                CartModal(dish: self.dish, viewNumber: 3, showModal: self.$showModal, dishManager: self.dishManager, drinkManager: DrinkManager())
+                    .environmentObject(self.appState)
+                    .environment(\.managedObjectContext, self.context)
             }
         }
         .frame(width: 150, height: 200)

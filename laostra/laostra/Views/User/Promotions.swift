@@ -9,9 +9,12 @@
 import SwiftUI
 
 struct Promotions: View {
+    @State var showNewView = false
     @State var promotions : [ Promotion ] = []
     @Binding var selection : Int
     @ObservedObject var userManager : UserManager
+    @ObservedObject var dishManager : DishManager
+    @ObservedObject var drinkManager : DrinkManager
     
     var body: some View {
         NavigationView {
@@ -38,10 +41,7 @@ struct Promotions: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 40),
-                trailing: Image(systemName: "cart.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.white)
+                trailing: CartIcon(dishManager: self.dishManager, drinkManager: self.drinkManager)
             )
         }
     }
@@ -49,6 +49,6 @@ struct Promotions: View {
 
 struct Promotions_Previews: PreviewProvider {
     static var previews: some View {
-        Promotions(selection: .constant(3), userManager: UserManager())
+        Promotions(selection: .constant(3), userManager: UserManager(), dishManager: DishManager(), drinkManager: DrinkManager())
     }
 }

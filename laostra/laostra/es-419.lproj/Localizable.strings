@@ -67,9 +67,16 @@
 "dishes" = "Platillos";
 "drinks" = "Bebidas";
 "menu" = "Menú";
-"orders" = "Ordenes";
+"orders" = "Órdenes";
 "promotions" = "Promociones";
 "profile" = "Perfil";
 "preferences" = "Preferencias";
 "logout" = "Cerrar sesión";
 "no_promotions" = "No tienes ninguna promoción";
+"store" = "Sucursales";
+"order" = "Pedido";
+"cart_is_empty" = "Tu carrito esta vacío";
+"add_to_cart" = "Añadir al carrito";
+"update_to_cart" = "Actualizar carrito";
+"added" = "Añadido";
+"updated" = "Actualizado";

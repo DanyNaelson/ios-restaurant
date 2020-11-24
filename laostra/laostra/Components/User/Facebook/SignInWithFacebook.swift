@@ -19,7 +19,7 @@ struct SignInWithFacebook : UIViewRepresentable {
     
     func makeUIView(context: UIViewRepresentableContext<SignInWithFacebook>) -> FBLoginButton {
         let button = FBLoginButton()
-        button.permissions = ["email"]
+        button.permissions = ["email", "public_profile"]
         button.delegate = context.coordinator
 
         return button

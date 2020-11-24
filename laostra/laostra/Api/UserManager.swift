@@ -12,12 +12,8 @@ import SwiftyJSON
 import Combine
 
 class UserManager: ObservableObject {
-    @Published var user : User
+    @Published var user : User = User(id: "", email: "", zipCode: "", role: "USER", nickname: "", confirm: false, birthday: Date(), cellPhone: "", gender: "MALE", google: false, facebook: false, withEmail: false, photo: "", favoriteDrinks: [], favoriteDishes: [], promotions: [])
     @Published var users = [User]()
-    
-    init() {
-        self.user = User(id: "", email: "", zipCode: "", role: "USER", nickname: "", confirm: false, birthday: Date(), cellPhone: "", gender: "MALE", google: false, facebook: false, withEmail: false, photo: "", favoriteDrinks: [], favoriteDishes: [], promotions: [])
-    }
     
     func signUp(email: String, password: String, completion: @escaping (Any) -> Void) {
         let parameters : Parameters = [

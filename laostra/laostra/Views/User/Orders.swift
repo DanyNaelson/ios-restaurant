@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct Orders: View {
+    @ObservedObject var dishManager : DishManager
+    @ObservedObject var drinkManager : DrinkManager
     @EnvironmentObject var appState : AppState
     
     var body: some View {
@@ -24,10 +26,7 @@ struct Orders: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 40),
-                        trailing: Image(systemName: "cart.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .foregroundColor(.white)
+                        trailing: CartIcon(dishManager: self.dishManager, drinkManager: self.drinkManager)
                     )
                 } else {
                     EmptyView()
@@ -39,6 +38,6 @@ struct Orders: View {
 
 struct Orders_Previews: PreviewProvider {
     static var previews: some View {
-        Orders()
+        Orders(dishManager: DishManager(), drinkManager: DrinkManager())
     }
 }

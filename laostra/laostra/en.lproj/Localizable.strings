@@ -73,3 +73,10 @@
 "preferences" = "Preferences";
 "logout" = "Logout";
 "no_promotions" = "You have no promotion";
+"store" = "Store";
+"order" = "Order";
+"cart_is_empty" = "Your cart is empty";
+"add_to_cart" = "Add to cart";
+"update_to_cart" = "Update cart";
+"added" = "Added";
+"updated" = "Updated";

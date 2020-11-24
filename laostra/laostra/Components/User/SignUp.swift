@@ -30,7 +30,7 @@ struct SignUp: View {
     }
     
     func signUpView(){
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        hideKeyboard()
         // MARK: - Validate email
         self.setErrors(validation: self.validationField.validateEmail(email: self.email))
         guard self.validationField.validateEmail(email: self.email).isValid else { return }

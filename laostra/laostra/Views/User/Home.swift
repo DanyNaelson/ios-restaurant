@@ -12,7 +12,7 @@ struct Home: View {
     @State private var menuType: String = "DISHES"
     @ObservedObject var dishManager : DishManager
     @ObservedObject var drinkManager : DrinkManager
-
+    
     var body: some View {
         return NavigationView {
             VStack(alignment: .leading) {
@@ -34,7 +34,6 @@ struct Home: View {
                     Drinks(drinkManager: drinkManager)
                         .transition(.opacity)
                         .animation(.spring())
-                        
                 }
             }
             .navigationBarTitle(Text(LocalizedStringKey("menu")), displayMode: .inline)
@@ -43,10 +42,7 @@ struct Home: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 40),
-                trailing: Image(systemName: "cart.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.white)
+                trailing: CartIcon(dishManager: self.dishManager, drinkManager: self.drinkManager)
             )
         }
     }

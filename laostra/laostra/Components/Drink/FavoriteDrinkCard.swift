@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct FavoriteDrinkCard: View {
     @State var drink : Drink
@@ -31,7 +32,9 @@ struct FavoriteDrinkCard: View {
             .transition(.fade)
             .animation(.default)
             VStack(alignment: .leading) {
-                ImageFromUrl(imageUrl: drink.picture)
+                AnimatedImage(url: URL(string: drink.picture))
+                    .resizable()
+                    .scaledToFit()
                     .frame(width: 80, height: 80)
                     .cornerRadius(5)
                     .padding(.bottom, 6)

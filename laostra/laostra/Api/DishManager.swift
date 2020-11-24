@@ -12,6 +12,7 @@ import SwiftyJSON
 import Combine
 
 class DishManager: ObservableObject {
+    @Published var dish : Dish = Dish(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDish(name: "", nickname: "", order: 0), price: 0, description: "")
     @Published var dishes = [Dish]()
     
     func getDishes(query: String) {
@@ -26,6 +27,26 @@ class DishManager: ObservableObject {
                             let dishObject = createDish(dish: dish.1)
 
                             self.dishes.append(dishObject)
+                        }
+
+                    case .failure(let error):
+                        print(error)
+                }
+            }
+        }
+    }
+    
+    func getDish(id: String, completion: @escaping (Dish) -> Void) {
+        DispatchQueue.main.async {
+            AF.request("\(Environment.menuServiceURL)dish/\(id)").responseJSON{ (response) in
+
+                switch response.result {
+                    case .success(let value):
+                        let json = JSON(value)
+
+                        if (json["ok"] == true) {
+                            self.dish = createDish(dish: json["dish"])
+                            completion(self.dish)
                         }
 
                     case .failure(let error):

@@ -30,7 +30,7 @@ struct LoginMenu: View {
                             .foregroundColor(Color("primary"))
                             .font(.title)
                             .onTapGesture {
-                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                hideKeyboard()
                                 withAnimation {
                                     self.viewNumber = 1
                                 }
@@ -119,7 +119,7 @@ struct LoginMenu: View {
             .padding(.horizontal, 40.0)
             .padding(.top, 20.0)
             .onTapGesture{
-                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                hideKeyboard()
             }
             if self.appState.fullScreenShow {
                 GeometryReader {_ in

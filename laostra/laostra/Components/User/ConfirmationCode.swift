@@ -26,7 +26,7 @@ struct ConfirmationCode: View {
     @EnvironmentObject var appState : AppState
     
     func resendCode() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        hideKeyboard()
         self.appState.elementShow = true
         let ostraUserID = UserDefaults.standard.string(forKey: "ostraUserID")!
 
@@ -50,7 +50,7 @@ struct ConfirmationCode: View {
     
     func sendCode() {
         if self.codeNumbers.joined(separator: "").count == 6 {
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            hideKeyboard()
             self.isLoading = true
             self.ostraCode = self.codeNumbers.joined(separator: "")
             let ostraUserID = UserDefaults.standard.string(forKey: "ostraUserID")!

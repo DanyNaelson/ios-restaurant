@@ -19,7 +19,7 @@ struct Profile: View {
     
     var body: some View {
         let user = self.userManager.user
-
+        
         return NavigationView {
             HStack() {
                 if self.appState.isUserLogged && user.id != "" {
@@ -57,10 +57,7 @@ struct Profile: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 40),
-                        trailing: Image(systemName: "cart.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .foregroundColor(.white)
+                        trailing: CartIcon(dishManager: self.dishManager, drinkManager: self.drinkManager)
                     )
                 } else {
                     EmptyView()

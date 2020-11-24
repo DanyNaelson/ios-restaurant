@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5FD603A09A77596CA708DEA3 /* Pods_laostra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE2B0CD00C2D26DB1E82A9DD /* Pods_laostra.framework */; };
 		6514554424DB7269007E89EB /* CategoryFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6514554324DB7269007E89EB /* CategoryFilter.swift */; };
+		652817EB255B6A910007D53E /* DishDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652817EA255B6A910007D53E /* DishDetail.swift */; };
 		652F07A624D48FB50015BDBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F07A524D48FB50015BDBC /* AppDelegate.swift */; };
 		652F07A824D48FB50015BDBC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F07A724D48FB50015BDBC /* SceneDelegate.swift */; };
 		652F07AA24D48FB50015BDBC /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F07A924D48FB50015BDBC /* Home.swift */; };
@@ -51,6 +52,7 @@
 		655ECDFA24EF520200CA272F /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655ECDF924EF520200CA272F /* LoginButton.swift */; };
 		655ECDFC24EF527800CA272F /* SignInWithGoogle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655ECDFB24EF527800CA272F /* SignInWithGoogle.swift */; };
 		655EDF0124D886B4007AB039 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655EDF0024D886B4007AB039 /* SignUp.swift */; };
+		65603E94255E310B00A91D6C /* CartItemCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65603E93255E310B00A91D6C /* CartItemCard.swift */; };
 		6560651F25433E5F007DFD10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6560651E25433E5F007DFD10 /* GoogleService-Info.plist */; };
 		6560891B254B420C0092BC9C /* Congratulations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6560891A254B420C0092BC9C /* Congratulations.swift */; };
 		6560891E254B45DD0092BC9C /* Promotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6560891D254B45DD0092BC9C /* Promotion.swift */; };
@@ -60,8 +62,20 @@
 		65609A762534CF2600B92222 /* FavoriteDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65609A752534CF2600B92222 /* FavoriteDrink.swift */; };
 		65609A792534CF9200B92222 /* FavoriteDish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65609A782534CF9200B92222 /* FavoriteDish.swift */; };
 		65609CA32539FF88003C47A2 /* SignInWithApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65609CA22539FF88003C47A2 /* SignInWithApple.swift */; };
+		6560AC6A255B0139000B1E1C /* Cart.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6560AC68255B0139000B1E1C /* Cart.xcdatamodeld */; };
+		6560AC72255B05C4000B1E1C /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6560AC71255B05C4000B1E1C /* CartItem.swift */; };
+		6560AC7D255B1773000B1E1C /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6560AC7C255B1773000B1E1C /* Cart.swift */; };
+		65611AB9256C8CC5001B260F /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65611AB8256C8CC5001B260F /* Keyboard.swift */; };
 		65615A7D250A6E6600F4854E /* FullScreenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65615A7C250A6E6600F4854E /* FullScreenLoader.swift */; };
 		65615A80250A79E600F4854E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65615A7F250A79E600F4854E /* AppState.swift */; };
+		6563233D25673EF5003A503A /* GenericModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6563233C25673EF5003A503A /* GenericModal.swift */; };
+		65648C9A255478A900C1A6B3 /* UserTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65648C99255478A900C1A6B3 /* UserTabView.swift */; };
+		65648C9D25547AFB00C1A6B3 /* AdminTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65648C9C25547AFB00C1A6B3 /* AdminTabView.swift */; };
+		65648CA025547D1600C1A6B3 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65648C9F25547D1600C1A6B3 /* Store.swift */; };
+		65648CA325547D8400C1A6B3 /* WaiterTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65648CA225547D8400C1A6B3 /* WaiterTabView.swift */; };
+		65648CA625547DD200C1A6B3 /* WaiterOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65648CA525547DD200C1A6B3 /* WaiterOrders.swift */; };
+		65648CA925547E3100C1A6B3 /* AdminProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65648CA825547E3100C1A6B3 /* AdminProfile.swift */; };
+		65648CAC25547E9C00C1A6B3 /* WaiterProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65648CAB25547E9C00C1A6B3 /* WaiterProfile.swift */; };
 		6569BE8C2550CB1A00B173D7 /* ErrorField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6569BE8B2550CB1A00B173D7 /* ErrorField.swift */; };
 		6569BE9C2550E61700B173D7 /* ValidationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6569BE9B2550E61700B173D7 /* ValidationField.swift */; };
 		657BEB62252655C20074AE90 /* PersonalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657BEB61252655C20074AE90 /* PersonalData.swift */; };
@@ -69,6 +83,7 @@
 		657BEB68252689C60074AE90 /* FavoriteDishes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657BEB67252689C60074AE90 /* FavoriteDishes.swift */; };
 		657BEB6B25268A400074AE90 /* FavoriteDrinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657BEB6A25268A400074AE90 /* FavoriteDrinks.swift */; };
 		65987059254099C60086D7F5 /* AppleSignInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65987058254099C60086D7F5 /* AppleSignInCoordinator.swift */; };
+		65A2253D256499E30092725E /* CartIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A2253C256499E30092725E /* CartIcon.swift */; };
 		65AC13002522576B003DD988 /* ConfirmationCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AC12FF2522576B003DD988 /* ConfirmationCode.swift */; };
 		65B3D10B2547B7710099CEEC /* GoogleSignInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B3D10A2547B7710099CEEC /* GoogleSignInCoordinator.swift */; };
 		65B3D1112547C1DC0099CEEC /* AppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B3D1102547C1DC0099CEEC /* AppleButton.swift */; };
@@ -76,12 +91,14 @@
 		65D7DDAF252D36DA00489A26 /* FavoriteDrinkCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D7DDAE252D36DA00489A26 /* FavoriteDrinkCard.swift */; };
 		65E9422E250AD9470048A50B /* ElementLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E9422D250AD9470048A50B /* ElementLoader.swift */; };
 		65EFB5BF24D8938500F7F4EF /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EFB5BE24D8938500F7F4EF /* Search.swift */; };
+		65F5C0462565DC84003D15F9 /* CartModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F5C0452565DC84003D15F9 /* CartModal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		36F10C0B4B297240347A05CE /* Pods-laostra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-laostra.debug.xcconfig"; path = "Target Support Files/Pods-laostra/Pods-laostra.debug.xcconfig"; sourceTree = "<group>"; };
 		4F1DCF34A179BAE7FA333D5B /* Pods-laostra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-laostra.release.xcconfig"; path = "Target Support Files/Pods-laostra/Pods-laostra.release.xcconfig"; sourceTree = "<group>"; };
 		6514554324DB7269007E89EB /* CategoryFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilter.swift; sourceTree = "<group>"; };
+		652817EA255B6A910007D53E /* DishDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetail.swift; sourceTree = "<group>"; };
 		652F07A224D48FB50015BDBC /* La Ostra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "La Ostra.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		652F07A524D48FB50015BDBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		652F07A724D48FB50015BDBC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +147,7 @@
 		655ECDF924EF520200CA272F /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		655ECDFB24EF527800CA272F /* SignInWithGoogle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithGoogle.swift; sourceTree = "<group>"; };
 		655EDF0024D886B4007AB039 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		65603E93255E310B00A91D6C /* CartItemCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCard.swift; sourceTree = "<group>"; };
 		6560651A25433431007DFD10 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6560651E25433E5F007DFD10 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "laostra/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		6560891A254B420C0092BC9C /* Congratulations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Congratulations.swift; sourceTree = "<group>"; };
@@ -141,8 +159,20 @@
 		65609A782534CF9200B92222 /* FavoriteDish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDish.swift; sourceTree = "<group>"; };
 		65609CA22539FF88003C47A2 /* SignInWithApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithApple.swift; sourceTree = "<group>"; };
 		65609CA52539FFB3003C47A2 /* La Ostra.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "La Ostra.entitlements"; sourceTree = "<group>"; };
+		6560AC69255B0139000B1E1C /* Cart.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cart.xcdatamodel; sourceTree = "<group>"; };
+		6560AC71255B05C4000B1E1C /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
+		6560AC7C255B1773000B1E1C /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
+		65611AB8256C8CC5001B260F /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		65615A7C250A6E6600F4854E /* FullScreenLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenLoader.swift; sourceTree = "<group>"; };
 		65615A7F250A79E600F4854E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		6563233C25673EF5003A503A /* GenericModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericModal.swift; sourceTree = "<group>"; };
+		65648C99255478A900C1A6B3 /* UserTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTabView.swift; sourceTree = "<group>"; };
+		65648C9C25547AFB00C1A6B3 /* AdminTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminTabView.swift; sourceTree = "<group>"; };
+		65648C9F25547D1600C1A6B3 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		65648CA225547D8400C1A6B3 /* WaiterTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaiterTabView.swift; sourceTree = "<group>"; };
+		65648CA525547DD200C1A6B3 /* WaiterOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaiterOrders.swift; sourceTree = "<group>"; };
+		65648CA825547E3100C1A6B3 /* AdminProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminProfile.swift; sourceTree = "<group>"; };
+		65648CAB25547E9C00C1A6B3 /* WaiterProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaiterProfile.swift; sourceTree = "<group>"; };
 		6569BE8B2550CB1A00B173D7 /* ErrorField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorField.swift; sourceTree = "<group>"; };
 		6569BE9B2550E61700B173D7 /* ValidationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationField.swift; sourceTree = "<group>"; };
 		657BEB61252655C20074AE90 /* PersonalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalData.swift; sourceTree = "<group>"; };
@@ -150,6 +180,7 @@
 		657BEB67252689C60074AE90 /* FavoriteDishes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDishes.swift; sourceTree = "<group>"; };
 		657BEB6A25268A400074AE90 /* FavoriteDrinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDrinks.swift; sourceTree = "<group>"; };
 		65987058254099C60086D7F5 /* AppleSignInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInCoordinator.swift; sourceTree = "<group>"; };
+		65A2253C256499E30092725E /* CartIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartIcon.swift; sourceTree = "<group>"; };
 		65AC12FF2522576B003DD988 /* ConfirmationCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationCode.swift; sourceTree = "<group>"; };
 		65B3D10A2547B7710099CEEC /* GoogleSignInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInCoordinator.swift; sourceTree = "<group>"; };
 		65B3D1102547C1DC0099CEEC /* AppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleButton.swift; sourceTree = "<group>"; };
@@ -157,6 +188,7 @@
 		65D7DDAE252D36DA00489A26 /* FavoriteDrinkCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDrinkCard.swift; sourceTree = "<group>"; };
 		65E9422D250AD9470048A50B /* ElementLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementLoader.swift; sourceTree = "<group>"; };
 		65EFB5BE24D8938500F7F4EF /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		65F5C0452565DC84003D15F9 /* CartModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModal.swift; sourceTree = "<group>"; };
 		CF63DC2D9F4BA3697A42DCCE /* Pods-laostra.stage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-laostra.stage.xcconfig"; path = "Target Support Files/Pods-laostra/Pods-laostra.stage.xcconfig"; sourceTree = "<group>"; };
 		FE2B0CD00C2D26DB1E82A9DD /* Pods_laostra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_laostra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -204,6 +236,7 @@
 		652F07A424D48FB50015BDBC /* laostra */ = {
 			isa = PBXGroup;
 			children = (
+				6560AC6C255B03EE000B1E1C /* Entities */,
 				655DDEC8253F4AE3006FE2D4 /* Config */,
 				65609CA52539FFB3003C47A2 /* La Ostra.entitlements */,
 				655844EB251D23B90004A7C1 /* Middleware */,
@@ -215,6 +248,7 @@
 				655EDEFF24D8862A007AB039 /* Views */,
 				652F07A524D48FB50015BDBC /* AppDelegate.swift */,
 				652F07A724D48FB50015BDBC /* SceneDelegate.swift */,
+				6560AC68255B0139000B1E1C /* Cart.xcdatamodeld */,
 				652F07AB24D48FB70015BDBC /* Assets.xcassets */,
 				6560651E25433E5F007DFD10 /* GoogleService-Info.plist */,
 				652F07B024D48FB70015BDBC /* LaunchScreen.storyboard */,
@@ -272,6 +306,7 @@
 				655E9518252BA2FD0085CB19 /* DrinkHelper.swift */,
 				65608920254B46B90092BC9C /* PromotionHelper.swift */,
 				6569BE9B2550E61700B173D7 /* ValidationField.swift */,
+				65611AB8256C8CC5001B260F /* Keyboard.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -308,6 +343,7 @@
 				655CC99424DCEE4200CD8E6D /* HorizontalDishList.swift */,
 				655D17C2252FEEDB00FB2DE2 /* DishGrid.swift */,
 				655D17C5252FF23300FB2DE2 /* FavoriteDishCard.swift */,
+				652817EA255B6A910007D53E /* DishDetail.swift */,
 			);
 			path = Dish;
 			sourceTree = "<group>";
@@ -332,6 +368,7 @@
 				655CC99024DCBFA600CD8E6D /* ImageFromUrl.swift */,
 				65EFB5BE24D8938500F7F4EF /* Search.swift */,
 				6569BE8B2550CB1A00B173D7 /* ErrorField.swift */,
+				6563233C25673EF5003A503A /* GenericModal.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -369,11 +406,10 @@
 		655EDEFF24D8862A007AB039 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				652F07A924D48FB50015BDBC /* Home.swift */,
+				65648C972554762F00C1A6B3 /* User */,
+				65648C962554761E00C1A6B3 /* Admin */,
+				65648C952554761600C1A6B3 /* Waiter */,
 				655B343824DB3AD200BA0139 /* MainTabView.swift */,
-				655B343A24DB3B5300BA0139 /* Orders.swift */,
-				655B343C24DB3B7200BA0139 /* Profile.swift */,
-				65608938254B77E30092BC9C /* Promotions.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -381,6 +417,7 @@
 		655EDF0224D88AEE007AB039 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				65603E92255E30EF00A91D6C /* Cart */,
 				655E952A252BCD0F0085CB19 /* User */,
 				655E9529252BCCB20085CB19 /* Shared */,
 				655E9528252BCC860085CB19 /* Drink */,
@@ -388,6 +425,57 @@
 				654F109F252388AE00AD113C /* CustomTextField.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		65603E92255E30EF00A91D6C /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				65603E93255E310B00A91D6C /* CartItemCard.swift */,
+				6560AC7C255B1773000B1E1C /* Cart.swift */,
+				65F5C0452565DC84003D15F9 /* CartModal.swift */,
+				65A2253C256499E30092725E /* CartIcon.swift */,
+			);
+			path = Cart;
+			sourceTree = "<group>";
+		};
+		6560AC6C255B03EE000B1E1C /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				6560AC71255B05C4000B1E1C /* CartItem.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		65648C952554761600C1A6B3 /* Waiter */ = {
+			isa = PBXGroup;
+			children = (
+				65648CA225547D8400C1A6B3 /* WaiterTabView.swift */,
+				65648CA525547DD200C1A6B3 /* WaiterOrders.swift */,
+				65648CAB25547E9C00C1A6B3 /* WaiterProfile.swift */,
+			);
+			path = Waiter;
+			sourceTree = "<group>";
+		};
+		65648C962554761E00C1A6B3 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				65648C9C25547AFB00C1A6B3 /* AdminTabView.swift */,
+				65648C9F25547D1600C1A6B3 /* Store.swift */,
+				65648CA825547E3100C1A6B3 /* AdminProfile.swift */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		65648C972554762F00C1A6B3 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				655B343A24DB3B5300BA0139 /* Orders.swift */,
+				652F07A924D48FB50015BDBC /* Home.swift */,
+				655B343C24DB3B7200BA0139 /* Profile.swift */,
+				65608938254B77E30092BC9C /* Promotions.swift */,
+				65648C99255478A900C1A6B3 /* UserTabView.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		65B3D10E2547C1290099CEEC /* Google */ = {
@@ -565,22 +653,29 @@
 				655E9516252BA2CB0085CB19 /* Drink.swift in Sources */,
 				655CC99524DCEE4200CD8E6D /* HorizontalDishList.swift in Sources */,
 				6560891B254B420C0092BC9C /* Congratulations.swift in Sources */,
+				65F5C0462565DC84003D15F9 /* CartModal.swift in Sources */,
 				655DF0C124F0469000E530E6 /* User.swift in Sources */,
 				655ECDFC24EF527800CA272F /* SignInWithGoogle.swift in Sources */,
 				65D7DDAF252D36DA00489A26 /* FavoriteDrinkCard.swift in Sources */,
 				655ECDF824EF51CD00CA272F /* FacebookButton.swift in Sources */,
 				6569BE8C2550CB1A00B173D7 /* ErrorField.swift in Sources */,
+				6563233D25673EF5003A503A /* GenericModal.swift in Sources */,
 				657BEB68252689C60074AE90 /* FavoriteDishes.swift in Sources */,
 				655EDF0124D886B4007AB039 /* SignUp.swift in Sources */,
+				6560AC6A255B0139000B1E1C /* Cart.xcdatamodeld in Sources */,
 				65E9422E250AD9470048A50B /* ElementLoader.swift in Sources */,
 				655DF0BE24F0465000E530E6 /* UserManager.swift in Sources */,
+				65648CA325547D8400C1A6B3 /* WaiterTabView.swift in Sources */,
 				655E9512252B9E470085CB19 /* Dishes.swift in Sources */,
 				653662FA2548ECBE0069BBA5 /* SignInWithFacebook.swift in Sources */,
+				65603E94255E310B00A91D6C /* CartItemCard.swift in Sources */,
 				65608939254B77E30092BC9C /* Promotions.swift in Sources */,
 				65571468253F5B94000A8F37 /* Environment.swift in Sources */,
+				652817EB255B6A910007D53E /* DishDetail.swift in Sources */,
 				655CC99324DCC94300CD8E6D /* Dish.swift in Sources */,
 				65B3D1112547C1DC0099CEEC /* AppleButton.swift in Sources */,
 				65B3D1142547C47E0099CEEC /* GoogleButton.swift in Sources */,
+				65611AB9256C8CC5001B260F /* Keyboard.swift in Sources */,
 				657BEB62252655C20074AE90 /* PersonalData.swift in Sources */,
 				65EFB5BF24D8938500F7F4EF /* Search.swift in Sources */,
 				655C2CE224DA29E200A4BF41 /* Login.swift in Sources */,
@@ -588,16 +683,21 @@
 				655B343924DB3AD200BA0139 /* MainTabView.swift in Sources */,
 				65615A80250A79E600F4854E /* AppState.swift in Sources */,
 				652F07A824D48FB50015BDBC /* SceneDelegate.swift in Sources */,
+				65648CAC25547E9C00C1A6B3 /* WaiterProfile.swift in Sources */,
 				655ECDFA24EF520200CA272F /* LoginButton.swift in Sources */,
 				655E951C252BA42D0085CB19 /* DrinkManager.swift in Sources */,
 				654F10A0252388AE00AD113C /* CustomTextField.swift in Sources */,
 				655B343B24DB3B5300BA0139 /* Orders.swift in Sources */,
 				655E951F252BA4B20085CB19 /* Drinks.swift in Sources */,
+				65648CA025547D1600C1A6B3 /* Store.swift in Sources */,
 				655844ED251D23DA0004A7C1 /* NetworkInterceptor.swift in Sources */,
 				657BEB6B25268A400074AE90 /* FavoriteDrinks.swift in Sources */,
 				65582416251BC609004879AC /* UserHelper.swift in Sources */,
+				65648CA625547DD200C1A6B3 /* WaiterOrders.swift in Sources */,
 				657BEB65252686910074AE90 /* Discount.swift in Sources */,
+				65648CA925547E3100C1A6B3 /* AdminProfile.swift in Sources */,
 				653663122548EDB60069BBA5 /* FacebookSignInCoordinator.swift in Sources */,
+				65A2253D256499E30092725E /* CartIcon.swift in Sources */,
 				655D17C3252FEEDB00FB2DE2 /* DishGrid.swift in Sources */,
 				655D7B4C24DDC833004E8BA6 /* DishHelper.swift in Sources */,
 				655D7B4E24DDD105004E8BA6 /* StringHelper.swift in Sources */,
@@ -606,6 +706,7 @@
 				6569BE9C2550E61700B173D7 /* ValidationField.swift in Sources */,
 				655E9525252BA5C90085CB19 /* DrinkCard.swift in Sources */,
 				65615A7D250A6E6600F4854E /* FullScreenLoader.swift in Sources */,
+				6560AC72255B05C4000B1E1C /* CartItem.swift in Sources */,
 				65608921254B46B90092BC9C /* PromotionHelper.swift in Sources */,
 				655D7B4924DDBA7C004E8BA6 /* DishCard.swift in Sources */,
 				65B3D10B2547B7710099CEEC /* GoogleSignInCoordinator.swift in Sources */,
@@ -614,7 +715,10 @@
 				652F07AA24D48FB50015BDBC /* Home.swift in Sources */,
 				6558A11324EC942200AF0284 /* LoginMenu.swift in Sources */,
 				6560891E254B45DD0092BC9C /* Promotion.swift in Sources */,
+				6560AC7D255B1773000B1E1C /* Cart.swift in Sources */,
 				655CC98F24DCBDAE00CD8E6D /* ImageLoader.swift in Sources */,
+				65648C9A255478A900C1A6B3 /* UserTabView.swift in Sources */,
+				65648C9D25547AFB00C1A6B3 /* AdminTabView.swift in Sources */,
 				65987059254099C60086D7F5 /* AppleSignInCoordinator.swift in Sources */,
 				6560893D254B7C210092BC9C /* PromotionRow.swift in Sources */,
 			);
@@ -773,6 +877,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"laostra/Preview Content\"";
 				DEVELOPMENT_TEAM = 25Z6G3L7FL;
+				EMAIL_SERVICE_URL = "http:/$()/192.168.0.9:8016/api/email/v1/";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = laostra/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -781,10 +886,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.02;
+				MENU_SERVICE_URL = "http:/$()/192.168.0.9:8015/api/menu/v1/";
 				PRODUCT_BUNDLE_IDENTIFIER = com.laostra.laostra;
 				PRODUCT_NAME = "La Ostra";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_SERVICE_URL = "http:/$()/192.168.0.9:8014/api/user/v1/";
 			};
 			name = Debug;
 		};
@@ -919,6 +1026,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6560AC68255B0139000B1E1C /* Cart.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6560AC69255B0139000B1E1C /* Cart.xcdatamodel */,
+			);
+			currentVersion = 6560AC69255B0139000B1E1C /* Cart.xcdatamodel */;
+			path = Cart.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 652F079A24D48FB50015BDBC /* Project object */;
 }
