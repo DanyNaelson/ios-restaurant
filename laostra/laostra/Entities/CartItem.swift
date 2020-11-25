@@ -18,6 +18,8 @@ class CartItem: NSManagedObject, Identifiable {
     @NSManaged public var photo : String
     @NSManaged public var total : Int16
     @NSManaged public var owner_id : String
+    @NSManaged public var type : String
+    @NSManaged public var specifications : String
 }
 
 extension CartItem {
@@ -50,5 +52,19 @@ extension CartItem {
         newCartItem.price = Int16(dish.price)
         newCartItem.quantity = Int16(dish.quantity)
         newCartItem.total = Int16(dish.price) * Int16(dish.quantity)
+        newCartItem.type = "dish"
+    }
+    
+    static func updateCartItemByDrink(newCartItem: CartItem, drink: Drink, userID: String) {
+        newCartItem.id = drink.id
+        newCartItem.name = drink.name
+        newCartItem.item_description = drink.description
+        newCartItem.owner_id = userID
+        newCartItem.photo = drink.picture
+        newCartItem.price = Int16(drink.price)
+        newCartItem.quantity = Int16(drink.quantity)
+        newCartItem.total = Int16(drink.price) * Int16(drink.quantity)
+        newCartItem.type = "drink"
+        newCartItem.specifications = drink.specifications
     }
 }

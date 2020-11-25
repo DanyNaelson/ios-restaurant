@@ -14,23 +14,38 @@ struct CartIcon: View {
     @ObservedObject var drinkManager : DrinkManager
     @EnvironmentObject var appState : AppState
     @SwiftUI.Environment(\.managedObjectContext) var context
+    @FetchRequest(fetchRequest: CartItem.getItemsByOwner(ownerId: UserDefaults.standard.string(forKey: "ostraUserID") ?? ""), animation: Animation.easeIn) var cartItems : FetchedResults<CartItem>
     
     var body: some View {
-        Image(systemName: "cart.fill")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .foregroundColor(.white)
-            .padding(.vertical, 15)
-            .padding(.leading, 15)
-            .padding(.trailing, 5)
-            .onTapGesture {
-                self.showModal = true
+        ZStack {
+            if self.cartItems.count > 0 {
+                ZStack {
+                    Circle()
+                        .foregroundColor(.red)
+                        .frame(width: 15, height: 15)
+                    Text("\(self.cartItems.count)")
+                        .foregroundColor(.white)
+                        .font(.system(size: 10))
+                        .padding(5)
+                }
+                .offset(x: 20, y: -10)
             }
-            .sheet(isPresented: self.$showModal){
-                CartModal(showModal: self.$showModal, dishManager: self.dishManager, drinkManager: self.drinkManager)
-                    .environmentObject(self.appState)
-                    .environment(\.managedObjectContext, self.context)
-            }
+            Image(systemName: "cart.fill")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.white)
+                .padding(.vertical, 15)
+                .padding(.leading, 15)
+                .padding(.trailing, 5)
+                .onTapGesture {
+                    self.showModal = true
+                }
+                .sheet(isPresented: self.$showModal){
+                    CartModal(showModal: self.$showModal, dishManager: self.dishManager, drinkManager: self.drinkManager)
+                        .environmentObject(self.appState)
+                        .environment(\.managedObjectContext, self.context)
+                }
+        }
     }
 }
 

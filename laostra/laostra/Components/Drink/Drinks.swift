@@ -27,7 +27,7 @@ struct Drinks: View {
             ScrollView(.vertical) {
                 if !drinks.isEmpty {
                     ForEach(categories, id: \.self) { category in
-                        HorizontalDrinkList(drinks: drinks, category: category, filter: self.filter)
+                        HorizontalDrinkList(drinks: drinks, category: category, filter: self.filter, drinkManager: self.drinkManager)
                     }
                 } else {
                     VStack(alignment: .center) {

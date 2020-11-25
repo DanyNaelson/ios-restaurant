@@ -14,7 +14,9 @@ struct CartItemCard: View {
     var cartItem : CartItem
     @Binding var viewNumber: Int
     @Binding var dish: Dish
+    @Binding var drink: Drink
     @ObservedObject var dishManager : DishManager
+    @ObservedObject var drinkManager : DrinkManager
     @SwiftUI.Environment(\.managedObjectContext) var context
     
     var body: some View {
@@ -36,7 +38,7 @@ struct CartItemCard: View {
                 Spacer()
                 VStack {
                     Spacer()
-                    Text("Total: $\(cartItem.total)")
+                    Text("Subtotal: $\(cartItem.total)")
                         .font(.headline)
                         .foregroundColor(Color("primary"))
                         .multilineTextAlignment(.trailing)
@@ -45,12 +47,22 @@ struct CartItemCard: View {
             Spacer()
         }
         .onTapGesture {
-            self.dishManager.getDish(id: cartItem.id){ resp in
-                var dish = resp
+            if cartItem.type == "dish" {
+                self.dishManager.getDish(id: cartItem.id){ resp in
+                    var dish = resp
 
-                dish.quantity = Int(cartItem.quantity)
-                self.dish = dish
-                self.viewNumber = 2
+                    dish.quantity = Int(cartItem.quantity)
+                    self.dish = dish
+                    self.viewNumber = 2
+                }
+            } else {
+                self.drinkManager.getDrink(id: cartItem.id){ resp in
+                    var drink = resp
+
+                    drink.quantity = Int(cartItem.quantity)
+                    self.drink = drink
+                    self.viewNumber = 2
+                }
             }
         }
     }
@@ -58,6 +70,6 @@ struct CartItemCard: View {
 
 struct CartItemCard_Previews: PreviewProvider {
     static var previews: some View {
-        CartItemCard(cartItem: CartItem(), viewNumber: .constant(1), dish: .constant(Dish(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDish(name: "", nickname: "", order: 1), price: 0, description: "")), dishManager: DishManager())
+        CartItemCard(cartItem: CartItem(), viewNumber: .constant(1), dish: .constant(Dish(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDish(name: "", nickname: "", order: 1), price: 0, description: "")), drink: .constant(Drink(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDrink(name: "", nickname: "", order: 1), price: 0, description: "", specifications: "")), dishManager: DishManager(), drinkManager: DrinkManager())
     }
 }

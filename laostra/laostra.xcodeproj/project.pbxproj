@@ -66,6 +66,7 @@
 		6560AC72255B05C4000B1E1C /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6560AC71255B05C4000B1E1C /* CartItem.swift */; };
 		6560AC7D255B1773000B1E1C /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6560AC7C255B1773000B1E1C /* Cart.swift */; };
 		65611AB9256C8CC5001B260F /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65611AB8256C8CC5001B260F /* Keyboard.swift */; };
+		6561596C256D9DC500AF2160 /* DrinkDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6561596B256D9DC500AF2160 /* DrinkDetail.swift */; };
 		65615A7D250A6E6600F4854E /* FullScreenLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65615A7C250A6E6600F4854E /* FullScreenLoader.swift */; };
 		65615A80250A79E600F4854E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65615A7F250A79E600F4854E /* AppState.swift */; };
 		6563233D25673EF5003A503A /* GenericModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6563233C25673EF5003A503A /* GenericModal.swift */; };
@@ -163,6 +164,7 @@
 		6560AC71255B05C4000B1E1C /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
 		6560AC7C255B1773000B1E1C /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		65611AB8256C8CC5001B260F /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		6561596B256D9DC500AF2160 /* DrinkDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDetail.swift; sourceTree = "<group>"; };
 		65615A7C250A6E6600F4854E /* FullScreenLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenLoader.swift; sourceTree = "<group>"; };
 		65615A7F250A79E600F4854E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		6563233C25673EF5003A503A /* GenericModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericModal.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				655E9521252BA53C0085CB19 /* HorizontalDrinkList.swift */,
 				655E9524252BA5C90085CB19 /* DrinkCard.swift */,
 				65D7DDAE252D36DA00489A26 /* FavoriteDrinkCard.swift */,
+				6561596B256D9DC500AF2160 /* DrinkDetail.swift */,
 			);
 			path = Drink;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 				65AC13002522576B003DD988 /* ConfirmationCode.swift in Sources */,
 				65609A792534CF9200B92222 /* FavoriteDish.swift in Sources */,
 				65609CA32539FF88003C47A2 /* SignInWithApple.swift in Sources */,
+				6561596C256D9DC500AF2160 /* DrinkDetail.swift in Sources */,
 				6514554424DB7269007E89EB /* CategoryFilter.swift in Sources */,
 				655E9516252BA2CB0085CB19 /* Drink.swift in Sources */,
 				655CC99524DCEE4200CD8E6D /* HorizontalDishList.swift in Sources */,
