@@ -18,5 +18,10 @@ class AppState: ObservableObject {
     @Published var isUserLogged: Bool = false
     @Published var userNickname: String = ""
     @Published var userRole: String = "USER"
+//    @Published var tabNumber: Int = 1
+//    @Published var showModal: Bool = false
+//    @Published var dishManager: DishManager = DishManager()
+//    @Published var drinkManager: DrinkManager = DrinkManager()
+//    @Published var orderManager: OrderManager = OrderManager()
     
 }

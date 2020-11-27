@@ -82,3 +82,5 @@
 "updated" = "Updated";
 "make_an_order" = "Make an order";
 "done" = "Done";
+"need_login_to_make_order" = "You need to login to order";
+"error_creating_order" = "Error creting order, try again";

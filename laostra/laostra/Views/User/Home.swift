@@ -12,6 +12,7 @@ struct Home: View {
     @State private var menuType: String = "DISHES"
     @ObservedObject var dishManager : DishManager
     @ObservedObject var drinkManager : DrinkManager
+    @ObservedObject var orderManager : OrderManager
     
     var body: some View {
         return NavigationView {
@@ -26,12 +27,12 @@ struct Home: View {
                 .pickerStyle(SegmentedPickerStyle())
                 Spacer()
                 if self.menuType == "DISHES" {
-                    Dishes(dishManager: dishManager)
+                    Dishes(dishManager: dishManager, orderManager: self.orderManager)
                         .transition(.opacity)
                         .animation(.spring())
                 }
                 if self.menuType == "DRINKS" {
-                    Drinks(drinkManager: drinkManager)
+                    Drinks(drinkManager: drinkManager, orderManager: self.orderManager)
                         .transition(.opacity)
                         .animation(.spring())
                 }
@@ -42,7 +43,7 @@ struct Home: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 40),
-                trailing: CartIcon(dishManager: self.dishManager, drinkManager: self.drinkManager)
+                trailing: CartIcon(dishManager: self.dishManager, drinkManager: self.drinkManager, orderManager: self.orderManager)
             )
         }
     }
@@ -50,6 +51,6 @@ struct Home: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        Home(dishManager: DishManager(), drinkManager: DrinkManager())
+        Home(dishManager: DishManager(), drinkManager: DrinkManager(), orderManager: OrderManager())
     }
 }

@@ -12,6 +12,7 @@ struct Drinks: View {
     @State private var search: String = ""
     @State private var filter: String = ""
     @ObservedObject var drinkManager : DrinkManager
+    @ObservedObject var orderManager : OrderManager
 
     var body: some View {
         let drinks = self.search == "" ? self.drinkManager.drinks : self.drinkManager.drinks.filter{$0.nickname.localizedCaseInsensitiveContains(self.search)}
@@ -27,7 +28,7 @@ struct Drinks: View {
             ScrollView(.vertical) {
                 if !drinks.isEmpty {
                     ForEach(categories, id: \.self) { category in
-                        HorizontalDrinkList(drinks: drinks, category: category, filter: self.filter, drinkManager: self.drinkManager)
+                        HorizontalDrinkList(drinks: drinks, category: category, filter: self.filter, drinkManager: self.drinkManager, orderManager: self.orderManager)
                     }
                 } else {
                     VStack(alignment: .center) {
@@ -53,6 +54,6 @@ struct Drinks: View {
 
 struct Drinks_Previews: PreviewProvider {
     static var previews: some View {
-        Drinks(drinkManager: DrinkManager())
+        Drinks(drinkManager: DrinkManager(), orderManager: OrderManager())
     }
 }

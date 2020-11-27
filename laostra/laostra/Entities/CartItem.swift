@@ -23,9 +23,10 @@ class CartItem: NSManagedObject, Identifiable {
 }
 
 extension CartItem {
-    static func getItemById(id: String) -> NSFetchRequest<CartItem> {
+    static func getItemByIdAndByOwner(id: String, ownerId: String) -> NSFetchRequest<CartItem> {
         let request : NSFetchRequest<CartItem> = CartItem.fetchRequest() as! NSFetchRequest<CartItem>
         request.predicate = NSPredicate(format: "id == %@", id)
+        request.predicate = NSPredicate(format: "owner_id == %@", id)
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 
         return request
@@ -36,6 +37,8 @@ extension CartItem {
         
         if ownerId != "" {
             request.predicate = NSPredicate(format: "owner_id == %@", ownerId)
+        } else {
+            request.predicate = NSPredicate(format: "owner_id == %@", "none")
         }
         
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]

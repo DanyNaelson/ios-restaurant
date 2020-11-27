@@ -16,18 +16,20 @@ struct UserTabView: View {
     @ObservedObject var userManager : UserManager
     @ObservedObject var dishManager = DishManager()
     @ObservedObject var drinkManager = DrinkManager()
+    @ObservedObject var orderManager = OrderManager()
+    @SwiftUI.Environment(\.managedObjectContext) var context
     
     var body: some View {
         let user = self.userManager.user
 
         TabView(selection:$selection) {
-            Home(dishManager: self.dishManager, drinkManager: self.drinkManager)
+            Home(dishManager: self.dishManager, drinkManager: self.drinkManager, orderManager: self.orderManager)
                 .tabItem{
                     Image(systemName: "book.fill")
                     Text(LocalizedStringKey("menu"))
             }
             .tag(1)
-            Orders(dishManager: self.dishManager, drinkManager: self.drinkManager)
+            Orders(dishManager: self.dishManager, drinkManager: self.drinkManager, orderManager: self.orderManager)
                 .tabItem{
                     Image(systemName: "list.bullet")
                     Text(LocalizedStringKey("orders"))
@@ -41,9 +43,9 @@ struct UserTabView: View {
                 }
             }
             .sheet(isPresented: self.$showModal) {
-                LoginMenu(selection: self.$selection, showModal: self.$showModal, userManager: userManager, drinkManager: drinkManager, dishManager: dishManager).environmentObject(self.appState)
+                LoginMenu(selection: self.$selection, showModal: self.$showModal, userManager: userManager, drinkManager: drinkManager, dishManager: dishManager).environmentObject(self.appState).environment(\.managedObjectContext, context)
             }
-            Promotions(selection: self.$selection, userManager: userManager, dishManager: self.dishManager, drinkManager: self.drinkManager)
+            Promotions(selection: self.$selection, userManager: userManager, dishManager: self.dishManager, drinkManager: self.drinkManager, orderManager: self.orderManager)
                 .tabItem{
                     Image(systemName: "tag.fill")
                     Text(LocalizedStringKey("promotions"))
@@ -57,9 +59,9 @@ struct UserTabView: View {
                 }
             }
             .sheet(isPresented: self.$showModal) {
-                LoginMenu(selection: self.$selection, showModal: self.$showModal, userManager: userManager, drinkManager: drinkManager, dishManager: dishManager).environmentObject(self.appState)
+                LoginMenu(selection: self.$selection, showModal: self.$showModal, userManager: userManager, drinkManager: drinkManager, dishManager: dishManager).environmentObject(self.appState).environment(\.managedObjectContext, context)
             }
-            Profile(selection: self.$selection, userManager: userManager, drinkManager: drinkManager, dishManager: dishManager)
+            Profile(selection: self.$selection, userManager: userManager, drinkManager: drinkManager, dishManager: dishManager, orderManager: self.orderManager)
                 .tabItem{
                     Image(systemName: "person.fill")
                     Text(LocalizedStringKey("profile"))
@@ -73,7 +75,7 @@ struct UserTabView: View {
                 }
             }
             .sheet(isPresented: self.$showModal) {
-                LoginMenu(selection: self.$selection, showModal: self.$showModal, userManager: userManager, drinkManager: drinkManager, dishManager: dishManager).environmentObject(self.appState)
+                LoginMenu(selection: self.$selection, showModal: self.$showModal, userManager: userManager, drinkManager: drinkManager, dishManager: dishManager).environmentObject(self.appState).environment(\.managedObjectContext, context)
             }
         }
         .accentColor(Color.white)

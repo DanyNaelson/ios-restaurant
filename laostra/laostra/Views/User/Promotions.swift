@@ -15,6 +15,7 @@ struct Promotions: View {
     @ObservedObject var userManager : UserManager
     @ObservedObject var dishManager : DishManager
     @ObservedObject var drinkManager : DrinkManager
+    @ObservedObject var orderManager : OrderManager
     
     var body: some View {
         NavigationView {
@@ -41,7 +42,7 @@ struct Promotions: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 40),
-                trailing: CartIcon(dishManager: self.dishManager, drinkManager: self.drinkManager)
+                trailing: CartIcon(dishManager: self.dishManager, drinkManager: self.drinkManager, orderManager: self.orderManager)
             )
         }
     }
@@ -49,6 +50,6 @@ struct Promotions: View {
 
 struct Promotions_Previews: PreviewProvider {
     static var previews: some View {
-        Promotions(selection: .constant(3), userManager: UserManager(), dishManager: DishManager(), drinkManager: DrinkManager())
+        Promotions(selection: .constant(3), userManager: UserManager(), dishManager: DishManager(), drinkManager: DrinkManager(), orderManager: OrderManager())
     }
 }

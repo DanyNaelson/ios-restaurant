@@ -12,6 +12,7 @@ struct CartIcon: View {
     @State var showModal = false
     @ObservedObject var dishManager : DishManager
     @ObservedObject var drinkManager : DrinkManager
+    @ObservedObject var orderManager : OrderManager
     @EnvironmentObject var appState : AppState
     @SwiftUI.Environment(\.managedObjectContext) var context
     @FetchRequest(fetchRequest: CartItem.getItemsByOwner(ownerId: UserDefaults.standard.string(forKey: "ostraUserID") ?? ""), animation: Animation.easeIn) var cartItems : FetchedResults<CartItem>
@@ -41,7 +42,7 @@ struct CartIcon: View {
                     self.showModal = true
                 }
                 .sheet(isPresented: self.$showModal){
-                    CartModal(showModal: self.$showModal, dishManager: self.dishManager, drinkManager: self.drinkManager)
+                    CartModal(showModal: self.$showModal, dishManager: self.dishManager, drinkManager: self.drinkManager, orderManager: self.orderManager)
                         .environmentObject(self.appState)
                         .environment(\.managedObjectContext, self.context)
                 }
@@ -51,6 +52,6 @@ struct CartIcon: View {
 
 struct CartIcon_Previews: PreviewProvider {
     static var previews: some View {
-        CartIcon(dishManager: DishManager(), drinkManager: DrinkManager())
+        CartIcon(dishManager: DishManager(), drinkManager: DrinkManager(), orderManager: OrderManager())
     }
 }

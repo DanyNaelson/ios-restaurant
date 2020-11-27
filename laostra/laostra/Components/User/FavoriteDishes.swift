@@ -135,7 +135,7 @@ struct FavoriteDishes: View {
             }
         }
         .onAppear() {
-            self.dishManager.getDishes(query: "")
+            self.dishManager.getDishes(query: ""){ response in }
             self.favoriteDishes = self.userManager.user.favoriteDishes
         }
     }

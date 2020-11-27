@@ -15,6 +15,7 @@ struct CartModal: View {
     @Binding var showModal: Bool
     @ObservedObject var dishManager : DishManager
     @ObservedObject var drinkManager : DrinkManager
+    @ObservedObject var orderManager : OrderManager
     
     var body: some View {
         ZStack {
@@ -53,7 +54,7 @@ struct CartModal: View {
             .zIndex(2)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
             if self.viewNumber == 1 {
-                Cart(viewNumber: self.$viewNumber, dish: self.$dish, drink: self.$drink, dishManager: DishManager(), drinkManager: DrinkManager())
+                Cart(showModal: self.$showModal, viewNumber: self.$viewNumber, dish: self.$dish, drink: self.$drink, dishManager: DishManager(), drinkManager: DrinkManager(), orderManager: self.orderManager)
             }
             
             if self.viewNumber == 2 {
@@ -77,6 +78,6 @@ struct CartModal: View {
 
 struct CartModal_Previews: PreviewProvider {
     static var previews: some View {
-        CartModal(showModal: .constant(true), dishManager: DishManager(), drinkManager: DrinkManager())
+        CartModal(showModal: .constant(true), dishManager: DishManager(), drinkManager: DrinkManager(), orderManager: OrderManager())
     }
 }

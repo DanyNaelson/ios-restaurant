@@ -8,25 +8,61 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import ToastUI
+import SwiftyJSON
 
 struct Cart: View {
     @State var loading : Bool = false
     @State var correctResponse : Bool = false
     @State var errorMessage : String = ""
+    @State var showingPopup : Bool = false
+    @Binding var showModal: Bool
     @Binding var viewNumber: Int
     @Binding var dish: Dish
     @Binding var drink: Drink
-    @FetchRequest(fetchRequest: CartItem.getItemsByOwner(ownerId: UserDefaults.standard.string(forKey: "ostraUserID") ?? ""), animation: Animation.easeIn) var cartItems : FetchedResults<CartItem>
+    @State var cartItems : [CartItem] = []
     @ObservedObject var dishManager : DishManager
     @ObservedObject var drinkManager : DrinkManager
+    @ObservedObject var orderManager : OrderManager
+    @EnvironmentObject var appState : AppState
     @SwiftUI.Environment(\.managedObjectContext) var context
     
     func confirmOrder(){
-        self.loading = true
-        
-        Timer.scheduledTimer(withTimeInterval: 4.0, repeats: false) { timer in
-            self.loading = false
-            self.correctResponse = true
+        if self.appState.isUserLogged {
+            self.errorMessage = ""
+            self.loading = true
+            let userID = UserDefaults.standard.string(forKey: "ostraUserID")!
+            let orderItems = createOrderItems(cartItems: self.cartItems)
+
+            self.orderManager.makeOrder(userID: userID, orderItems: orderItems){ response in
+                let data = JSON(response)
+                self.loading = false
+
+                if data["ok"] == true {
+                    for cartItemToDelete in self.cartItems {
+                        self.context.delete(cartItemToDelete)
+                    }
+                    
+                    do{
+                        try self.context.save()
+                        self.cartItems = []
+                        self.correctResponse = true
+                        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
+                            self.showModal = false
+                        }
+                    } catch let error as NSError {
+                        self.errorMessage = error.localizedDescription
+                    }
+                } else {
+                    if data["err"]["message"] == "logout" {
+                        logout(appState: self.appState)
+                    }
+                    
+                    self.errorMessage = "error_creating_order"
+                }
+            }
+        } else {
+            self.showingPopup.toggle()
         }
     }
     
@@ -45,6 +81,7 @@ struct Cart: View {
                         
                         do{
                             try self.context.save()
+                            self.cartItems.remove(at: index.first!)
                         } catch let error as NSError {
                             self.errorMessage = error.localizedDescription
                         }
@@ -60,6 +97,9 @@ struct Cart: View {
                         .font(.title)
                 }
                 .padding(.trailing, 20)
+                if self.errorMessage != "" {
+                    ErrorField(errorMessage: self.errorMessage)
+                }
                 Button(action: {
                     self.confirmOrder()
                 }){
@@ -89,6 +129,10 @@ struct Cart: View {
                 .background(Color("primary"))
                 .cornerRadius(10)
                 .frame(height: 50)
+                .toast(isPresented: self.$showingPopup, dismissAfter: 4.0) {} content: {
+                    ToastView(LocalizedStringKey("need_login_to_make_order"))
+                        .toastViewStyle(InfoToastViewStyle())
+                }
             } else {
                 Image(systemName: "cart.fill")
                     .resizable()
@@ -101,11 +145,22 @@ struct Cart: View {
             }
         }
         .padding(.top, 60)
+        .onAppear{
+            do {
+                let cartItems = try self.context.fetch(CartItem.getItemsByOwner(ownerId: UserDefaults.standard.string(forKey: "ostraUserID") ?? ""))
+                
+                if !cartItems.isEmpty {
+                    self.cartItems = cartItems
+                }
+            } catch let error {
+                fatalError("Failed to fetch entity: \(error)")
+            }
+        }
     }
 }
 
 struct Cart_Previews: PreviewProvider {
     static var previews: some View {
-        Cart(viewNumber: .constant(1), dish: .constant(Dish(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDish(name: "", nickname: "", order: 1), price: 0, description: "")), drink: .constant(Drink(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDrink(name: "", nickname: "", order: 1), price: 0, description: "", specifications: "")), dishManager: DishManager(), drinkManager: DrinkManager())
+        Cart(showModal: .constant(true), viewNumber: .constant(1), dish: .constant(Dish(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDish(name: "", nickname: "", order: 1), price: 0, description: "")), drink: .constant(Drink(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDrink(name: "", nickname: "", order: 1), price: 0, description: "", specifications: "")), dishManager: DishManager(), drinkManager: DrinkManager(), orderManager: OrderManager())
     }
 }

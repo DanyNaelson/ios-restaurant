@@ -65,7 +65,7 @@ struct PersonalData: View {
                 if data["err"]["message"] == "logout" {
                     logout(appState: self.appState)
                 }
-                print(data)
+
                 self.errorField = data["err"]["field"].string ?? ""
                 self.errorMessage = data["err"]["message"].string ?? ""
             }

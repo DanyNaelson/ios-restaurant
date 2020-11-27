@@ -13,6 +13,7 @@ struct HorizontalDrinkList: View {
     var category: String
     var filter: String
     @ObservedObject var drinkManager : DrinkManager
+    @ObservedObject var orderManager : OrderManager
     
     var body: some View {
         VStack {
@@ -33,7 +34,7 @@ struct HorizontalDrinkList: View {
                                 ForEach(self.drinks, id: \.id) { drink in
                                     Group {
                                         if self.category == drink.category.name {
-                                            DrinkCard(drink: drink, drinkManager: self.drinkManager)
+                                            DrinkCard(drink: drink, drinkManager: self.drinkManager, orderManager: self.orderManager)
                                         }
                                     }
                                 }

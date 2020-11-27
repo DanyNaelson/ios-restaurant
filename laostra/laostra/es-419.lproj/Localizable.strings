@@ -82,3 +82,5 @@
 "updated" = "Actualizado";
 "make_an_order" = "Hacer pedido";
 "done" = "Hecho";
+"need_login_to_make_order" = "Necesitas iniciar sesión para ordenar";
+"error_creating_order" = "Error creando el pedido, intente de nuevo";

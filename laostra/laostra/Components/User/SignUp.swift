@@ -22,6 +22,7 @@ struct SignUp: View {
     @Binding var noCode : Bool
     @ObservedObject var userManager : UserManager
     @EnvironmentObject var appState : AppState
+    @SwiftUI.Environment(\.managedObjectContext) var context
     var validationField : ValidationField = ValidationField()
     
     func setErrors(validation: ValidationField) -> Void {
@@ -52,6 +53,25 @@ struct SignUp: View {
                 UserDefaults.standard.set("\(data["token"])", forKey: "ostraToken")
                 UserDefaults.standard.set("\(data["refreshToken"])", forKey: "ostraRefreshToken")
                 UserDefaults.standard.set("\(data["user"]["_id"])", forKey: "ostraUserID")
+                do {
+                    let cartItems = try self.context.fetch(CartItem.getItemsByOwner(ownerId: ""))
+
+                    if !cartItems.isEmpty {
+                        let userID = UserDefaults.standard.string(forKey: "ostraUserID")!
+
+                        for cartItem in cartItems {
+                            cartItem.owner_id = userID
+                        }
+
+                        do{
+                            try self.context.save()
+                        } catch let error as NSError {
+                            self.errorMessage = error.localizedDescription
+                        }
+                    }
+                } catch let error {
+                    fatalError("Failed to fetch entity: \(error)")
+                }
                 
                 if data["sentEmail"] == true {
                     self.noCode = false

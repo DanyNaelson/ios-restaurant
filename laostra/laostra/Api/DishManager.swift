@@ -15,9 +15,9 @@ class DishManager: ObservableObject {
     @Published var dish : Dish = Dish(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDish(name: "", nickname: "", order: 0), price: 0, description: "")
     @Published var dishes = [Dish]()
     
-    func getDishes(query: String) {
+    func getDishes(query: String, completion: @escaping (Any) -> Void) {
         self.dishes = []
-        
+
         DispatchQueue.main.async {
             AF.request("\(Environment.menuServiceURL)dishes\(query)").responseJSON{ (response) in
                 switch response.result {
@@ -28,9 +28,10 @@ class DishManager: ObservableObject {
 
                             self.dishes.append(dishObject)
                         }
+                        completion(value)
 
                     case .failure(let error):
-                        print(error)
+                        completion(error)
                 }
             }
         }

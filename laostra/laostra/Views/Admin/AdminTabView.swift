@@ -15,10 +15,11 @@ struct AdminTabView: View {
     @ObservedObject var userManager : UserManager
     @ObservedObject var dishManager = DishManager()
     @ObservedObject var drinkManager = DrinkManager()
+    @ObservedObject var orderManager = OrderManager()
     
     var body: some View {
         TabView(selection:$selection) {
-            Home(dishManager: dishManager, drinkManager: drinkManager)
+            Home(dishManager: dishManager, drinkManager: drinkManager, orderManager: self.orderManager)
                 .tabItem{
                     Image(systemName: "book.fill")
                     Text(LocalizedStringKey("menu"))

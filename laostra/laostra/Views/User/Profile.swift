@@ -15,6 +15,7 @@ struct Profile: View {
     @ObservedObject var userManager : UserManager
     @ObservedObject var drinkManager : DrinkManager
     @ObservedObject var dishManager : DishManager
+    @ObservedObject var orderManager : OrderManager
     @EnvironmentObject var appState : AppState
     
     var body: some View {
@@ -57,7 +58,7 @@ struct Profile: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 40),
-                        trailing: CartIcon(dishManager: self.dishManager, drinkManager: self.drinkManager)
+                        trailing: CartIcon(dishManager: self.dishManager, drinkManager: self.drinkManager, orderManager: self.orderManager)
                     )
                 } else {
                     EmptyView()
@@ -72,6 +73,6 @@ struct Profile: View {
 
 struct Profile_Previews: PreviewProvider {
     static var previews: some View {
-        Profile(selection: .constant(4), userManager: UserManager(), drinkManager: DrinkManager(), dishManager: DishManager())
+        Profile(selection: .constant(4), userManager: UserManager(), drinkManager: DrinkManager(), dishManager: DishManager(), orderManager: OrderManager())
     }
 }

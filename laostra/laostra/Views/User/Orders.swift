@@ -7,10 +7,13 @@
 //
 
 import SwiftUI
+import SwiftyJSON
 
 struct Orders: View {
+    @State var orders : [ Order ] = []
     @ObservedObject var dishManager : DishManager
     @ObservedObject var drinkManager : DrinkManager
+    @ObservedObject var orderManager : OrderManager
     @EnvironmentObject var appState : AppState
     
     var body: some View {
@@ -18,7 +21,12 @@ struct Orders: View {
             HStack() {
                 if self.appState.isUserLogged {
                     VStack(alignment: .leading) {
-                        Text(LocalizedStringKey("orders"))
+                        List(self.orders, id: \.id) { order in
+                            NavigationLink(destination: OrderDetail(order: order)){
+                                OrderRow(order: order)
+                            }
+                        }
+                        .padding(.top, 20)
                     }
                     .navigationBarTitle(Text(LocalizedStringKey("orders")), displayMode: .inline)
                     .navigationBarItems(
@@ -26,10 +34,19 @@ struct Orders: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 40),
-                        trailing: CartIcon(dishManager: self.dishManager, drinkManager: self.drinkManager)
+                        trailing: CartIcon(dishManager: self.dishManager, drinkManager: self.drinkManager, orderManager: self.orderManager)
                     )
                 } else {
                     EmptyView()
+                }
+            }
+            .onAppear{
+                self.orderManager.getOrdersByUser{ response in
+                    let json = JSON(response)
+                    
+                    if json["ok"] == true {
+                        self.orders = self.orderManager.orders
+                    }
                 }
             }
         }
@@ -38,6 +55,6 @@ struct Orders: View {
 
 struct Orders_Previews: PreviewProvider {
     static var previews: some View {
-        Orders(dishManager: DishManager(), drinkManager: DrinkManager())
+        Orders(dishManager: DishManager(), drinkManager: DrinkManager(), orderManager: OrderManager())
     }
 }

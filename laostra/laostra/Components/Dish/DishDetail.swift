@@ -129,12 +129,16 @@ struct DishDetail: View {
         .padding(.top, 80)
         .padding(.horizontal, 50)
         .onAppear{
+            let userID = UserDefaults.standard.string(forKey: "ostraUserID") ?? "none"
+            
             do {
-                let cartItem = try self.context.fetch(CartItem.getItemById(id: self.dish.id))
+                let cartItem = try self.context.fetch(CartItem.getItemByIdAndByOwner(id: self.dish.id, ownerId: userID))
                 
                 if !cartItem.isEmpty {
                     dish.quantity = Int(cartItem[0].quantity)
                     self.cartItem = cartItem[0]
+                } else {
+                    dish.quantity = 0
                 }
             } catch let error {
                 fatalError("Failed to fetch entity: \(error)")
