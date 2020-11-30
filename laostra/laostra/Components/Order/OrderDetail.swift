@@ -16,7 +16,7 @@ struct OrderDetail: View {
         let total = self.order.orderItems.reduce(0) { $0 + $1.total }
         
         return VStack(alignment: .center, spacing: 20) {
-            List(self.order.orderItems, id: \.id) { orderItem in
+            List(self.order.orderItems, id: \.name) { orderItem in
                 HStack {
                     AnimatedImage(url: URL(string: orderItem.picture))
                         .resizable()

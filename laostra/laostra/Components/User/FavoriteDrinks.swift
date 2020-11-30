@@ -8,6 +8,7 @@
 
 import SwiftUI
 import SwiftyJSON
+import SDWebImageSwiftUI
 
 struct FavoriteDrinks: View {
     @State private var search: String = ""
@@ -64,7 +65,9 @@ struct FavoriteDrinks: View {
                 ForEach(0 ..< 3) { index in
                     if favoriteDrinks.indices.contains(index) {
                         VStack(alignment: .leading) {
-                            ImageFromUrl(imageUrl: self.favoriteDrinks[index].picture)
+                            AnimatedImage(url: URL(string: self.favoriteDrinks[index].picture))
+                                .resizable()
+                                .scaledToFit()
                                 .frame(width: 80, height: 80)
                                 .cornerRadius(5)
                                 .padding(.bottom, 6)

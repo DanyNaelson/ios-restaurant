@@ -68,7 +68,7 @@ struct Cart: View {
     
     var body: some View {
         let total = self.cartItems.reduce(0) { $0 + $1.total }
-        
+
         return VStack(alignment: .center, spacing: 20) {
             if self.cartItems.count > 0 {
                 List {

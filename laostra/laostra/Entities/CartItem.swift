@@ -25,8 +25,7 @@ class CartItem: NSManagedObject, Identifiable {
 extension CartItem {
     static func getItemByIdAndByOwner(id: String, ownerId: String) -> NSFetchRequest<CartItem> {
         let request : NSFetchRequest<CartItem> = CartItem.fetchRequest() as! NSFetchRequest<CartItem>
-        request.predicate = NSPredicate(format: "id == %@", id)
-        request.predicate = NSPredicate(format: "owner_id == %@", id)
+        request.predicate = NSPredicate(format: "id == %@ AND owner_id = %@", id, ownerId)
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 
         return request
