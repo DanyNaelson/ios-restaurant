@@ -41,11 +41,13 @@ struct Orders: View {
                 }
             }
             .onAppear{
-                self.orderManager.getOrdersByUser{ response in
-                    let json = JSON(response)
-                    
-                    if json["ok"] == true {
-                        self.orders = self.orderManager.orders
+                if self.appState.isUserLogged {
+                    self.orderManager.getOrdersByUser{ response in
+                        let json = JSON(response)
+                        
+                        if json["ok"] == true {
+                            self.orders = self.orderManager.orders
+                        }
                     }
                 }
             }

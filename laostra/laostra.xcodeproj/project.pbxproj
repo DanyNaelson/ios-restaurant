@@ -906,7 +906,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "laostra/La Ostra.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"laostra/Preview Content\"";
 				DEVELOPMENT_TEAM = 25Z6G3L7FL;
 				EMAIL_SERVICE_URL = "http:/$()/192.168.0.9:8016/api/email/v1/";
@@ -917,7 +917,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.02;
+				MARKETING_VERSION = 0.04;
 				MENU_SERVICE_URL = "http:/$()/192.168.0.9:8015/api/menu/v1/";
 				PRODUCT_BUNDLE_IDENTIFIER = com.laostra.laostra;
 				PRODUCT_NAME = "La Ostra";
@@ -934,7 +934,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "laostra/La Ostra.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"laostra/Preview Content\"";
 				DEVELOPMENT_TEAM = 25Z6G3L7FL;
 				ENABLE_PREVIEWS = YES;
@@ -944,7 +944,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.02;
+				MARKETING_VERSION = 0.04;
 				PRODUCT_BUNDLE_IDENTIFIER = com.laostra.laostra;
 				PRODUCT_NAME = "La Ostra";
 				SWIFT_VERSION = 5.0;
@@ -1016,7 +1016,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "laostra/La Ostra.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"laostra/Preview Content\"";
 				DEVELOPMENT_TEAM = 25Z6G3L7FL;
 				ENABLE_PREVIEWS = YES;
@@ -1026,7 +1026,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.02;
+				MARKETING_VERSION = 0.04;
 				PRODUCT_BUNDLE_IDENTIFIER = com.laostra.laostra;
 				PRODUCT_NAME = "La Ostra";
 				SWIFT_VERSION = 5.0;
