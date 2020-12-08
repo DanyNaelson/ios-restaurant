@@ -15,7 +15,6 @@ struct FavoriteDishes: View {
     @State private var correctResponse : Bool = false
     @State private var favoriteDishes : [FavoriteDish] = []
     @Binding var step : Int
-    @ObservedObject var userManager : UserManager
     @ObservedObject var dishManager : DishManager
     @EnvironmentObject var appState : AppState
     
@@ -36,7 +35,7 @@ struct FavoriteDishes: View {
         let ostraUserID = UserDefaults.standard.string(forKey: "ostraUserID")!
         self.appState.elementShow = true
         
-        self.userManager.updateUserPreferences(userID: ostraUserID, preferences: "dishes", body: self.favoriteDishes){ response in
+        self.appState.userManager.updateUserPreferences(userID: ostraUserID, preferences: "dishes", body: self.favoriteDishes){ response in
             let data = JSON(response)
             
             if data["ok"] == true {
@@ -139,13 +138,13 @@ struct FavoriteDishes: View {
         }
         .onAppear() {
             self.dishManager.getDishes(query: ""){ response in }
-            self.favoriteDishes = self.userManager.user.favoriteDishes
+            self.favoriteDishes = self.appState.userManager.user.favoriteDishes
         }
     }
 }
 
 struct FavoriteDishes_Previews: PreviewProvider {
     static var previews: some View {
-        FavoriteDishes(step: .constant(3), userManager: UserManager(), dishManager: DishManager())
+        FavoriteDishes(step: .constant(3), dishManager: DishManager())
     }
 }

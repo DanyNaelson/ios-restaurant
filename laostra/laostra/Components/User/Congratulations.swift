@@ -14,7 +14,6 @@ struct Congratulations: View {
     @State var addedPromotion : Bool = false
     @State var errorMessage : String = ""
     @Binding var showModal : Bool
-    @ObservedObject var userManager : UserManager
     @EnvironmentObject var appState : AppState
     
     var dateFormatter: DateFormatter {
@@ -88,7 +87,7 @@ struct Congratulations: View {
             ]
             let ostraUserID = UserDefaults.standard.string(forKey: "ostraUserID")!
             
-            self.userManager.addPromotion(userID: ostraUserID, promotion: promotion) { response in
+            self.appState.userManager.addPromotion(userID: ostraUserID, promotion: promotion) { response in
                 self.isLoading = false
 
                 let data = JSON(response)
@@ -109,6 +108,6 @@ struct Congratulations: View {
 
 struct Congratulations_Previews: PreviewProvider {
     static var previews: some View {
-        Congratulations(showModal: .constant(true), userManager: UserManager())
+        Congratulations(showModal: .constant(true))
     }
 }

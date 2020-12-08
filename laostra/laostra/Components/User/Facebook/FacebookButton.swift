@@ -20,7 +20,6 @@ struct FacebookButton: View {
     @Binding var selection : Int
     @Binding var showModal : Bool
     @EnvironmentObject var appState : AppState
-    @ObservedObject var userManager : UserManager
     @SwiftUI.Environment(\.managedObjectContext) var context
     
     func signInFacebook(accessToken: String) -> Void {
@@ -29,7 +28,7 @@ struct FacebookButton: View {
         self.errorField = ""
         self.errorMessage = ""
 
-        self.userManager.signInFacebook(accessToken: accessToken){ response in
+        self.appState.userManager.signInFacebook(accessToken: accessToken){ response in
             self.loaderFacebook = false
             let data = JSON(response)
 
@@ -106,6 +105,6 @@ struct FacebookButton: View {
 
 struct FacebookButton_Previews: PreviewProvider {
     static var previews: some View {
-        FacebookButton(viewNumber: .constant(1), selection: .constant(4), showModal: .constant(true), userManager: UserManager())
+        FacebookButton(viewNumber: .constant(1), selection: .constant(4), showModal: .constant(true))
     }
 }

@@ -19,7 +19,6 @@ struct GoogleButton: View {
     @Binding var selection : Int
     @Binding var showModal : Bool
     @EnvironmentObject var appState : AppState
-    @ObservedObject var userManager : UserManager
     @SwiftUI.Environment(\.managedObjectContext) var context
     
     func signInGoogle(idToken: String) -> Void {
@@ -28,7 +27,7 @@ struct GoogleButton: View {
         self.errorField = ""
         self.errorMessage = ""
 
-        self.userManager.signInGoogle(idToken: idToken){ response in
+        self.appState.userManager.signInGoogle(idToken: idToken){ response in
 
             self.loaderGoogle = false
             let data = JSON(response)
@@ -105,6 +104,6 @@ struct GoogleButton: View {
 
 struct GoogleButton_Previews: PreviewProvider {
     static var previews: some View {
-        GoogleButton(viewNumber: .constant(1), selection: .constant(4), showModal: .constant(true), userManager: UserManager())
+        GoogleButton(viewNumber: .constant(1), selection: .constant(4), showModal: .constant(true))
     }
 }

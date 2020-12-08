@@ -17,7 +17,6 @@ struct LoginMenu: View {
     @Binding var selection : Int
     @Binding var showModal : Bool
     @EnvironmentObject var appState : AppState
-    @ObservedObject var userManager : UserManager
     @ObservedObject var drinkManager : DrinkManager
     @ObservedObject var dishManager : DishManager
     
@@ -67,9 +66,9 @@ struct LoginMenu: View {
                 case 1:
                     VStack(alignment: .center, spacing: 20) {
                         LoginButton(viewNumber: self.$viewNumber)
-                        AppleButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal, userManager: self.userManager)
-                        FacebookButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal, userManager: self.userManager)
-                        GoogleButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal, userManager: self.userManager)
+                        AppleButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal)
+                        FacebookButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal)
+                        GoogleButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal)
                         VStack(spacing: 0) {
                             Text(LocalizedStringKey("click_to_register"))
                             Text(LocalizedStringKey("here"))
@@ -84,22 +83,22 @@ struct LoginMenu: View {
                     }
                     .transition(.scale)
                 case 2:
-                    SignUp(email: "", password: "", viewNumber: self.$viewNumber, noCode: self.$noCode, userManager: userManager)
+                    SignUp(email: "", password: "", viewNumber: self.$viewNumber, noCode: self.$noCode)
                         .transition(.scale)
                 case 3:
-                    Login(email: "", password: "", selection: self.$selection, showModal: self.$showModal, userManager: userManager)
+                    Login(email: "", password: "", selection: self.$selection, showModal: self.$showModal)
                         .transition(.scale)
                 case 4:
-                    ConfirmationCode(viewNumber: self.$viewNumber, noCode: self.$noCode, userManager: userManager)
+                    ConfirmationCode(viewNumber: self.$viewNumber, noCode: self.$noCode)
                         .transition(.scale)
                 case 5:
-                    Discount(showModal: self.$showModal, userManager: userManager, drinkManager: drinkManager, dishManager: DishManager())
+                    Discount(showModal: self.$showModal, drinkManager: drinkManager, dishManager: DishManager())
                 default:
                     VStack(alignment: .center, spacing: 20) {
                         LoginButton(viewNumber: self.$viewNumber)
-                        AppleButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal, userManager: self.userManager)
-                        FacebookButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal, userManager: self.userManager)
-                        GoogleButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal, userManager: self.userManager)
+                        AppleButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal)
+                        FacebookButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal)
+                        GoogleButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal)
                         VStack(spacing: 0) {
                             Text(LocalizedStringKey("click_to_register"))
                             Text(LocalizedStringKey("here"))
@@ -134,6 +133,6 @@ struct LoginMenu: View {
 
 struct LoginMenu_Previews: PreviewProvider {
     static var previews: some View {
-        LoginMenu(selection: .constant(1), showModal: .constant(true), userManager: UserManager(), drinkManager: DrinkManager(), dishManager: DishManager()).environmentObject(AppState())
+        LoginMenu(selection: .constant(1), showModal: .constant(true), drinkManager: DrinkManager(), dishManager: DishManager()).environmentObject(AppState())
     }
 }

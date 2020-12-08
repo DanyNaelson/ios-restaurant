@@ -19,7 +19,6 @@ struct AppleButton: View {
     @Binding var selection : Int
     @Binding var showModal : Bool
     @EnvironmentObject var appState : AppState
-    @ObservedObject var userManager : UserManager
     @SwiftUI.Environment(\.managedObjectContext) var context
     
     func signInApple(user: String, token: String) -> Void {
@@ -28,7 +27,7 @@ struct AppleButton: View {
         self.errorField = ""
         self.errorMessage = ""
 
-        self.userManager.signInApple(user: user, identityToken: token){ response in
+        self.appState.userManager.signInApple(user: user, identityToken: token){ response in
 
             self.loaderApple = false
             let data = JSON(response)
@@ -105,6 +104,6 @@ struct AppleButton: View {
 
 struct AppleButton_Previews: PreviewProvider {
     static var previews: some View {
-        AppleButton(viewNumber: .constant(1), selection: .constant(4), showModal: .constant(true), userManager: UserManager())
+        AppleButton(viewNumber: .constant(1), selection: .constant(4), showModal: .constant(true))
     }
 }

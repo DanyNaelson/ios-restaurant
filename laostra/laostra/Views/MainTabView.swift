@@ -10,20 +10,19 @@ import SwiftUI
 import SwiftyJSON
 
 struct MainTabView: View {
-    @ObservedObject var userManager = UserManager()
     @EnvironmentObject var appState : AppState
 
     var body: some View {
-        let user = self.userManager.user
+        let user = self.appState.userManager.user
 
         return ZStack {
             Color("primary").edgesIgnoringSafeArea(.all)
             if user.role == "ADMIN" && self.appState.isUserLogged {
-                AdminTabView(userManager: userManager)
+                AdminTabView()
             } else if user.role == "WAITER" && self.appState.isUserLogged {
-                WaiterTabView(userManager: userManager)
+                WaiterTabView()
             } else {
-                UserTabView(userManager: userManager)
+                UserTabView()
             }
         }
     }

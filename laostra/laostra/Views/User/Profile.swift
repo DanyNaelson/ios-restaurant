@@ -12,14 +12,13 @@ import Combine
 struct Profile: View {
     @State var modal : Bool = false
     @Binding var selection : Int
-    @ObservedObject var userManager : UserManager
     @ObservedObject var drinkManager : DrinkManager
     @ObservedObject var dishManager : DishManager
     @ObservedObject var orderManager : OrderManager
     @EnvironmentObject var appState : AppState
     
     var body: some View {
-        let user = self.userManager.user
+        let user = self.appState.userManager.user
         
         return NavigationView {
             HStack() {
@@ -65,7 +64,7 @@ struct Profile: View {
                 }
             }
             .sheet(isPresented: self.$modal) {
-                Discount(showModal: self.$modal, userManager: userManager, drinkManager: drinkManager, dishManager: dishManager).environmentObject(self.appState)
+                Discount(showModal: self.$modal, drinkManager: drinkManager, dishManager: dishManager).environmentObject(self.appState)
             }
         }
     }
@@ -73,6 +72,6 @@ struct Profile: View {
 
 struct Profile_Previews: PreviewProvider {
     static var previews: some View {
-        Profile(selection: .constant(4), userManager: UserManager(), drinkManager: DrinkManager(), dishManager: DishManager(), orderManager: OrderManager())
+        Profile(selection: .constant(4), drinkManager: DrinkManager(), dishManager: DishManager(), orderManager: OrderManager())
     }
 }

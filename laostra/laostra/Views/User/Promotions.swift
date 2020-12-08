@@ -12,7 +12,7 @@ struct Promotions: View {
     @State var showNewView = false
     @State var promotions : [ Promotion ] = []
     @Binding var selection : Int
-    @ObservedObject var userManager : UserManager
+    @EnvironmentObject var appState : AppState
     @ObservedObject var dishManager : DishManager
     @ObservedObject var drinkManager : DrinkManager
     @ObservedObject var orderManager : OrderManager
@@ -34,7 +34,7 @@ struct Promotions: View {
                 }
             }
             .onAppear(){
-                self.promotions = self.userManager.user.promotions
+                self.promotions = self.appState.userManager.user.promotions
             }
             .navigationBarTitle(Text(LocalizedStringKey("promotions")), displayMode: .inline)
             .navigationBarItems(
@@ -50,6 +50,6 @@ struct Promotions: View {
 
 struct Promotions_Previews: PreviewProvider {
     static var previews: some View {
-        Promotions(selection: .constant(3), userManager: UserManager(), dishManager: DishManager(), drinkManager: DrinkManager(), orderManager: OrderManager())
+        Promotions(selection: .constant(3), dishManager: DishManager(), drinkManager: DrinkManager(), orderManager: OrderManager())
     }
 }

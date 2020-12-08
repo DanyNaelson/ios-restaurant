@@ -11,7 +11,6 @@ import SwiftUI
 struct Discount: View {
     @State var step : Int = 1
     @Binding var showModal : Bool
-    @ObservedObject var userManager : UserManager
     @ObservedObject var drinkManager : DrinkManager
     @ObservedObject var dishManager : DishManager
     @EnvironmentObject var appState : AppState
@@ -36,15 +35,15 @@ struct Discount: View {
             }
             switch self.step {
             case 1:
-                PersonalData(step: self.$step, userManager: userManager)
+                PersonalData(step: self.$step)
             case 2:
-                FavoriteDrinks(step: self.$step, userManager: userManager, drinkManager: drinkManager)
+                FavoriteDrinks(step: self.$step, drinkManager: drinkManager)
             case 3:
-                FavoriteDishes(step: self.$step, userManager: userManager, dishManager: dishManager)
+                FavoriteDishes(step: self.$step, dishManager: dishManager)
             case 4:
-                Congratulations(showModal: self.$showModal, userManager: userManager)
+                Congratulations(showModal: self.$showModal)
             default:
-                PersonalData(step: self.$step, userManager: userManager)
+                PersonalData(step: self.$step)
             }
         }
         .padding(.horizontal, 20.0)
@@ -54,6 +53,6 @@ struct Discount: View {
 
 struct Discount_Previews: PreviewProvider {
     static var previews: some View {
-        Discount(showModal: .constant(true), userManager: UserManager(), drinkManager: DrinkManager(), dishManager: DishManager())
+        Discount(showModal: .constant(true), drinkManager: DrinkManager(), dishManager: DishManager())
     }
 }

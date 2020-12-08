@@ -21,7 +21,6 @@ struct PersonalData: View {
     @State private var responseMessage : String = ""
     @State private var serverError : String = ""
     @Binding var step : Int
-    @ObservedObject var userManager : UserManager
     @EnvironmentObject var appState : AppState
     var validationField : ValidationField = ValidationField()
     
@@ -52,7 +51,7 @@ struct PersonalData: View {
             "birthday": self.birthday
         ] as [String : Any]
         
-        self.userManager.updateProfile(userID: ostraUserID, body: body){ response in
+        self.appState.userManager.updateProfile(userID: ostraUserID, body: body){ response in
             let data = JSON(response)
 
             if data["ok"] == true {
@@ -176,9 +175,9 @@ struct PersonalData: View {
                 }
             }
             .onAppear(){
-                self.zipCode = userManager.user.zipCode
-                self.gender = userManager.user.gender
-                self.birthday = userManager.user.birthday
+                self.zipCode = self.appState.userManager.user.zipCode
+                self.gender = self.appState.userManager.user.gender
+                self.birthday = self.appState.userManager.user.birthday
             }
             .onTapGesture{
                 hideKeyboard()
@@ -189,6 +188,6 @@ struct PersonalData: View {
 
 struct PersonalData_Previews: PreviewProvider {
     static var previews: some View {
-        PersonalData(step: .constant(1), userManager: UserManager())
+        PersonalData(step: .constant(1))
     }
 }

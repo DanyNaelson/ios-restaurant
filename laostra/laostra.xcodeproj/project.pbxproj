@@ -909,7 +909,7 @@
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"laostra/Preview Content\"";
 				DEVELOPMENT_TEAM = 25Z6G3L7FL;
-				EMAIL_SERVICE_URL = "http:/$()/192.168.0.9:8016/api/email/v1/";
+				EMAIL_SERVICE_URL = "http:/$()/192.168.0.8:8016/api/email/v1/";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = laostra/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -918,12 +918,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.04;
-				MENU_SERVICE_URL = "http:/$()/192.168.0.9:8015/api/menu/v1/";
+				MENU_SERVICE_URL = "http:/$()/192.168.0.8:8015/api/menu/v1/";
 				PRODUCT_BUNDLE_IDENTIFIER = com.laostra.laostra;
 				PRODUCT_NAME = "La Ostra";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_SERVICE_URL = "http:/$()/192.168.0.9:8014/api/user/v1/";
+				USER_SERVICE_URL = "http:/$()/192.168.0.8:8014/api/user/v1/";
 			};
 			name = Debug;
 		};

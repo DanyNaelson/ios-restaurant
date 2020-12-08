@@ -12,7 +12,6 @@ struct AdminTabView: View {
     @State private var selection = 1
     @State private var showModal = false
     @EnvironmentObject var appState : AppState
-    @ObservedObject var userManager : UserManager
     @ObservedObject var dishManager = DishManager()
     @ObservedObject var drinkManager = DrinkManager()
     @ObservedObject var orderManager = OrderManager()
@@ -31,7 +30,7 @@ struct AdminTabView: View {
                     Text(LocalizedStringKey("store"))
             }
             .tag(2)
-            AdminProfile(selection: self.$selection, userManager: userManager, drinkManager: drinkManager, dishManager: dishManager)
+            AdminProfile(selection: self.$selection, drinkManager: drinkManager, dishManager: dishManager)
                 .tabItem{
                     Image(systemName: "person.fill")
                     Text(LocalizedStringKey("profile"))
@@ -44,6 +43,6 @@ struct AdminTabView: View {
 
 struct AdminTabView_Previews: PreviewProvider {
     static var previews: some View {
-        AdminTabView(userManager: UserManager())
+        AdminTabView()
     }
 }

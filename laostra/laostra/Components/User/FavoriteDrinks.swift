@@ -15,7 +15,6 @@ struct FavoriteDrinks: View {
     @State private var correctResponse : Bool = false
     @State private var favoriteDrinks : [FavoriteDrink] = []
     @Binding var step : Int
-    @ObservedObject var userManager : UserManager
     @ObservedObject var drinkManager : DrinkManager
     @EnvironmentObject var appState : AppState
     
@@ -36,7 +35,7 @@ struct FavoriteDrinks: View {
         let ostraUserID = UserDefaults.standard.string(forKey: "ostraUserID")!
         self.appState.elementShow = true
         
-        self.userManager.updateUserPreferences(userID: ostraUserID, preferences: "drinks", body: self.favoriteDrinks){ response in
+        self.appState.userManager.updateUserPreferences(userID: ostraUserID, preferences: "drinks", body: self.favoriteDrinks){ response in
             let data = JSON(response)
             
             if data["ok"] == true {
@@ -139,13 +138,13 @@ struct FavoriteDrinks: View {
         }
         .onAppear() {
             self.drinkManager.getDrinks(query: "")
-            self.favoriteDrinks = self.userManager.user.favoriteDrinks
+            self.favoriteDrinks = self.appState.userManager.user.favoriteDrinks
         }
     }
 }
 
 struct FavoriteDrinks_Previews: PreviewProvider {
     static var previews: some View {
-        FavoriteDrinks(step: .constant(2), userManager: UserManager(), drinkManager: DrinkManager())
+        FavoriteDrinks(step: .constant(2), drinkManager: DrinkManager())
     }
 }

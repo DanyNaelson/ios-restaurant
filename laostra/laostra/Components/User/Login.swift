@@ -19,7 +19,6 @@ struct Login: View {
     @State var serverError : String = ""
     @Binding var selection : Int
     @Binding var showModal : Bool
-    @ObservedObject var userManager : UserManager
     @EnvironmentObject var appState : AppState
     @SwiftUI.Environment(\.managedObjectContext) var context
     var validationField : ValidationField = ValidationField()
@@ -41,7 +40,7 @@ struct Login: View {
         self.appState.elementShow = true
         self.errorField = ""
         self.errorMessage = ""
-        self.userManager.login(email: self.email, password: self.password){ response in
+        self.appState.userManager.login(email: self.email, password: self.password){ response in
             self.appState.elementShow = false
             let data = JSON(response)
 
@@ -163,6 +162,6 @@ struct Login: View {
 
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        Login(email: "", password: "", selection: .constant(4), showModal: .constant(true), userManager: UserManager())
+        Login(email: "", password: "", selection: .constant(4), showModal: .constant(true))
     }
 }

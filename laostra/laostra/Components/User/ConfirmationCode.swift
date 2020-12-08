@@ -22,7 +22,6 @@ struct ConfirmationCode: View {
     @State var emailError : String = ""
     @Binding var viewNumber : Int
     @Binding var noCode : Bool
-    @ObservedObject var userManager : UserManager
     @EnvironmentObject var appState : AppState
     
     func resendCode() {
@@ -30,7 +29,7 @@ struct ConfirmationCode: View {
         self.appState.elementShow = true
         let ostraUserID = UserDefaults.standard.string(forKey: "ostraUserID")!
 
-        self.userManager.resendConfirmationCode(userID: ostraUserID, email: self.email){ response in
+        self.appState.userManager.resendConfirmationCode(userID: ostraUserID, email: self.email){ response in
             self.appState.elementShow = false
             let data = JSON(response)
 
@@ -55,7 +54,7 @@ struct ConfirmationCode: View {
             self.ostraCode = self.codeNumbers.joined(separator: "")
             let ostraUserID = UserDefaults.standard.string(forKey: "ostraUserID")!
 
-            self.userManager.sendConfirmationCode(userID: ostraUserID, confirmationCode: self.ostraCode){ response in
+            self.appState.userManager.sendConfirmationCode(userID: ostraUserID, confirmationCode: self.ostraCode){ response in
                 let data = JSON(response)
 
                 if data["ok"] == true {
@@ -76,7 +75,7 @@ struct ConfirmationCode: View {
     }
     
     var body: some View {
-        let email = userManager.user.email
+        let email = self.appState.userManager.user.email
         let pseudoEmail = "\(email.split(separator: "@")[0].prefix(3))*****@\(email.split(separator: "@")[1])"
 
         return ScrollView(.vertical, showsIndicators: false) {
@@ -201,6 +200,6 @@ struct ConfirmationCode: View {
 
 struct ConfirmationCode_Previews: PreviewProvider {
     static var previews: some View {
-        ConfirmationCode(viewNumber: .constant(4), noCode: .constant(true), userManager: UserManager())
+        ConfirmationCode(viewNumber: .constant(4), noCode: .constant(true))
     }
 }

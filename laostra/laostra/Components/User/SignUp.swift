@@ -20,7 +20,6 @@ struct SignUp: View {
     @State var serverError : String = ""
     @Binding var viewNumber : Int
     @Binding var noCode : Bool
-    @ObservedObject var userManager : UserManager
     @EnvironmentObject var appState : AppState
     @SwiftUI.Environment(\.managedObjectContext) var context
     var validationField : ValidationField = ValidationField()
@@ -42,7 +41,7 @@ struct SignUp: View {
         self.appState.elementShow = true
         self.errorField = ""
         self.errorMessage = ""
-        self.userManager.signUp(email: self.email, password: self.password){ response in
+        self.appState.userManager.signUp(email: self.email, password: self.password){ response in
             self.appState.elementShow = false
             let data = JSON(response)
 
@@ -168,6 +167,6 @@ struct SignUp: View {
 
 struct SignUp_Previews: PreviewProvider {
     static var previews: some View {
-        SignUp(email: "", password: "", viewNumber: .constant(1), noCode: .constant(true), userManager: UserManager())
+        SignUp(email: "", password: "", viewNumber: .constant(1), noCode: .constant(true))
     }
 }
