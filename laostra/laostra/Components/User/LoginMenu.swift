@@ -17,8 +17,6 @@ struct LoginMenu: View {
     @Binding var selection : Int
     @Binding var showModal : Bool
     @EnvironmentObject var appState : AppState
-    @ObservedObject var drinkManager : DrinkManager
-    @ObservedObject var dishManager : DishManager
     
     var body: some View {
         ZStack {
@@ -92,7 +90,7 @@ struct LoginMenu: View {
                     ConfirmationCode(viewNumber: self.$viewNumber, noCode: self.$noCode)
                         .transition(.scale)
                 case 5:
-                    Discount(showModal: self.$showModal, drinkManager: drinkManager, dishManager: DishManager())
+                    Discount(showModal: self.$showModal)
                 default:
                     VStack(alignment: .center, spacing: 20) {
                         LoginButton(viewNumber: self.$viewNumber)
@@ -133,6 +131,6 @@ struct LoginMenu: View {
 
 struct LoginMenu_Previews: PreviewProvider {
     static var previews: some View {
-        LoginMenu(selection: .constant(1), showModal: .constant(true), drinkManager: DrinkManager(), dishManager: DishManager()).environmentObject(AppState())
+        LoginMenu(selection: .constant(1), showModal: .constant(true)).environmentObject(AppState())
     }
 }

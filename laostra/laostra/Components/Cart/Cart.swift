@@ -21,9 +21,6 @@ struct Cart: View {
     @Binding var dish: Dish
     @Binding var drink: Drink
     @State var cartItems : [CartItem] = []
-    @ObservedObject var dishManager : DishManager
-    @ObservedObject var drinkManager : DrinkManager
-    @ObservedObject var orderManager : OrderManager
     @EnvironmentObject var appState : AppState
     @SwiftUI.Environment(\.managedObjectContext) var context
     
@@ -34,7 +31,7 @@ struct Cart: View {
             let userID = UserDefaults.standard.string(forKey: "ostraUserID")!
             let orderItems = createOrderItems(cartItems: self.cartItems)
 
-            self.orderManager.makeOrder(userID: userID, orderItems: orderItems){ response in
+            self.appState.orderManager.makeOrder(userID: userID, orderItems: orderItems){ response in
                 let data = JSON(response)
                 self.loading = false
 
@@ -73,7 +70,7 @@ struct Cart: View {
             if self.cartItems.count > 0 {
                 List {
                     ForEach(self.cartItems, id: \.self){ cartItem in
-                        CartItemCard(cartItem: cartItem, viewNumber: self.$viewNumber, dish: self.$dish, drink: self.$drink, dishManager: self.dishManager, drinkManager: self.drinkManager)
+                        CartItemCard(cartItem: cartItem, viewNumber: self.$viewNumber, dish: self.$dish, drink: self.$drink)
                     }
                     .onDelete{ index in
                         let cartItemToDelete = self.cartItems[index.first!]
@@ -161,6 +158,6 @@ struct Cart: View {
 
 struct Cart_Previews: PreviewProvider {
     static var previews: some View {
-        Cart(showModal: .constant(true), viewNumber: .constant(1), dish: .constant(Dish(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDish(name: "", nickname: "", order: 1), price: 0, description: "")), drink: .constant(Drink(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDrink(name: "", nickname: "", order: 1), price: 0, description: "", specifications: "")), dishManager: DishManager(), drinkManager: DrinkManager(), orderManager: OrderManager())
+        Cart(showModal: .constant(true), viewNumber: .constant(1), dish: .constant(Dish(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDish(name: "", nickname: "", order: 1), price: 0, description: "")), drink: .constant(Drink(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDrink(name: "", nickname: "", order: 1), price: 0, description: "", specifications: "")))
     }
 }

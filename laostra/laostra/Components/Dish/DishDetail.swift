@@ -18,7 +18,7 @@ struct DishDetail: View {
     @State var errorMessage : String = ""
     @Binding var dish : Dish
     @Binding var showModal : Bool
-    @ObservedObject var dishManager : DishManager
+    @EnvironmentObject var appState : AppState
     @SwiftUI.Environment(\.managedObjectContext) var context
     
     func addToCart(){
@@ -152,6 +152,6 @@ struct DishDetail: View {
 
 struct DishDetail_Previews: PreviewProvider {
     static var previews: some View {
-        DishDetail(dish: .constant(Dish(id: "56757", status: "ACTIVE", picture: "", name: "Coctel de camarón", nickname: "coctel-de-camaron", category: CategoryDish(name: "Barra Fría", nickname: "barra-fria", order: 4), price: 150, description: "Coctel de camarón")), showModal: .constant(false), dishManager: DishManager())
+        DishDetail(dish: .constant(Dish(id: "56757", status: "ACTIVE", picture: "", name: "Coctel de camarón", nickname: "coctel-de-camaron", category: CategoryDish(name: "Barra Fría", nickname: "barra-fria", order: 4), price: 150, description: "Coctel de camarón")), showModal: .constant(false))
     }
 }

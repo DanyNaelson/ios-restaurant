@@ -12,8 +12,6 @@ import SDWebImageSwiftUI
 struct DishCard: View {
     @State var dish: Dish
     @State var showModal : Bool = false
-    @ObservedObject var dishManager : DishManager
-    @ObservedObject var orderManager : OrderManager
     @EnvironmentObject var appState : AppState
     @SwiftUI.Environment(\.managedObjectContext) var context
     
@@ -39,7 +37,7 @@ struct DishCard: View {
                     .foregroundColor(Color.white)
             }
             .sheet(isPresented: self.$showModal) {
-                CartModal(dish: self.dish, viewNumber: 3, showModal: self.$showModal, dishManager: self.dishManager, drinkManager: DrinkManager(), orderManager: self.orderManager)
+                CartModal(dish: self.dish, viewNumber: 3, showModal: self.$showModal)
                     .environmentObject(self.appState)
                     .environment(\.managedObjectContext, self.context)
             }

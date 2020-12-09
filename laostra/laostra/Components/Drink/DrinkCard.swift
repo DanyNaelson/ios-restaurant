@@ -12,8 +12,6 @@ import SDWebImageSwiftUI
 struct DrinkCard: View {
     @State var drink: Drink
     @State var showModal : Bool = false
-    @ObservedObject var drinkManager : DrinkManager
-    @ObservedObject var orderManager : OrderManager
     @EnvironmentObject var appState : AppState
     @SwiftUI.Environment(\.managedObjectContext) var context
     
@@ -39,7 +37,7 @@ struct DrinkCard: View {
                 .foregroundColor(Color.white)
             }
             .sheet(isPresented: self.$showModal) {
-                CartModal(drink: self.drink, viewNumber: 4, showModal: self.$showModal, dishManager: DishManager(), drinkManager: DrinkManager(), orderManager: self.orderManager)
+                CartModal(drink: self.drink, viewNumber: 4, showModal: self.$showModal)
                     .environmentObject(self.appState)
                     .environment(\.managedObjectContext, self.context)
             }
@@ -51,6 +49,6 @@ struct DrinkCard: View {
 
 struct DrinkCard_Previews: PreviewProvider {
     static var previews: some View {
-        DrinkCard(drink: Drink(id: "565765", status: "ACTIVE", picture: "", name: "Don Julio 70", nickname: "don-julio-70", category: CategoryDrink(name: "Tequila", nickname: "tequila", order: 1), price: 110, description: "Don Julio 70", specifications: ""), drinkManager: DrinkManager(), orderManager: OrderManager())
+        DrinkCard(drink: Drink(id: "565765", status: "ACTIVE", picture: "", name: "Don Julio 70", nickname: "don-julio-70", category: CategoryDrink(name: "Tequila", nickname: "tequila", order: 1), price: 110, description: "Don Julio 70", specifications: ""))
     }
 }

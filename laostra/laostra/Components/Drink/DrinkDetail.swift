@@ -18,7 +18,7 @@ struct DrinkDetail: View {
     @State var errorMessage : String = ""
     @Binding var drink : Drink
     @Binding var showModal : Bool
-    @ObservedObject var drinkManager : DrinkManager
+    @EnvironmentObject var appState : AppState
     @SwiftUI.Environment(\.managedObjectContext) var context
     
     func addToCart(){
@@ -150,6 +150,6 @@ struct DrinkDetail: View {
 
 struct DrinkDetail_Previews: PreviewProvider {
     static var previews: some View {
-        DrinkDetail(drink: .constant(Drink(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDrink(name: "", nickname: "", order: 1), price: 0, description: "", specifications: "")), showModal: .constant(true), drinkManager: DrinkManager())
+        DrinkDetail(drink: .constant(Drink(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDrink(name: "", nickname: "", order: 1), price: 0, description: "", specifications: "")), showModal: .constant(true))
     }
 }

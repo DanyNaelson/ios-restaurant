@@ -13,8 +13,7 @@ struct Dishes: View {
     @State private var search: String = ""
     @State private var filter: String = ""
     @State var dishes: [ Dish ] = []
-    @ObservedObject var dishManager : DishManager
-    @ObservedObject var orderManager : OrderManager
+    @EnvironmentObject var appState : AppState
 
     var body: some View {
         let dishes = self.search == "" ? self.dishes : self.dishes.filter{$0.nickname.localizedCaseInsensitiveContains(self.search)}
@@ -30,7 +29,7 @@ struct Dishes: View {
             ScrollView(.vertical) {
                 if !dishes.isEmpty {
                     ForEach(categories, id: \.self) { category in
-                        HorizontalDishList(dishes: dishes, category: category, filter: self.filter, dishManager: self.dishManager, orderManager: self.orderManager)
+                        HorizontalDishList(dishes: dishes, category: category, filter: self.filter)
                     }
                 } else {
                     VStack(alignment: .center) {
@@ -43,11 +42,11 @@ struct Dishes: View {
             .gesture(DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
                 .onEnded({ value in
                     if value.translation.height > 0 && value.translation.width < 100 && value.translation.width > -100 {
-                        self.dishManager.getDishes(query: ""){ response in
+                        self.appState.dishManager.getDishes(query: ""){ response in
                             let json = JSON(response)
                             
                             if json["ok"] == true {
-                                self.dishes = self.dishManager.dishes
+                                self.dishes = self.appState.dishManager.dishes
                             }
                         }
                     }
@@ -55,11 +54,11 @@ struct Dishes: View {
             )
         }
         .onAppear(){
-            self.dishManager.getDishes(query: ""){ response in
+            self.appState.dishManager.getDishes(query: ""){ response in
                 let json = JSON(response)
                 
                 if json["ok"] == true {
-                    self.dishes = self.dishManager.dishes
+                    self.dishes = self.appState.dishManager.dishes
                 }
             }
         }
@@ -68,6 +67,6 @@ struct Dishes: View {
 
 struct Dishes_Previews: PreviewProvider {
     static var previews: some View {
-        Dishes(dishManager: DishManager(), orderManager: OrderManager())
+        Dishes()
     }
 }

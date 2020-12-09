@@ -13,9 +13,6 @@ struct CartModal: View {
     @State var drink : Drink = Drink(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDrink(name: "", nickname: "", order: 1), price: 0, description: "", specifications: "")
     @State var viewNumber: Int = 1
     @Binding var showModal: Bool
-    @ObservedObject var dishManager : DishManager
-    @ObservedObject var drinkManager : DrinkManager
-    @ObservedObject var orderManager : OrderManager
     
     var body: some View {
         ZStack {
@@ -54,23 +51,23 @@ struct CartModal: View {
             .zIndex(2)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
             if self.viewNumber == 1 {
-                Cart(showModal: self.$showModal, viewNumber: self.$viewNumber, dish: self.$dish, drink: self.$drink, dishManager: DishManager(), drinkManager: DrinkManager(), orderManager: self.orderManager)
+                Cart(showModal: self.$showModal, viewNumber: self.$viewNumber, dish: self.$dish, drink: self.$drink)
             }
             
             if self.viewNumber == 2 {
                 if self.dish.id != "" {
-                    DishDetail(dish: self.$dish, showModal: self.$showModal, dishManager: self.dishManager)
+                    DishDetail(dish: self.$dish, showModal: self.$showModal)
                 } else if self.drink.id != "" {
-                    DrinkDetail(drink: self.$drink, showModal: self.$showModal, drinkManager: self.drinkManager)
+                    DrinkDetail(drink: self.$drink, showModal: self.$showModal)
                 }
             }
             
             if self.viewNumber == 3 {
-                DishDetail(dish: self.$dish, showModal: self.$showModal, dishManager: self.dishManager)
+                DishDetail(dish: self.$dish, showModal: self.$showModal)
             }
             
             if self.viewNumber == 4 {
-                DrinkDetail(drink: self.$drink, showModal: self.$showModal, drinkManager: self.drinkManager)
+                DrinkDetail(drink: self.$drink, showModal: self.$showModal)
             }
         }
     }
@@ -78,6 +75,6 @@ struct CartModal: View {
 
 struct CartModal_Previews: PreviewProvider {
     static var previews: some View {
-        CartModal(showModal: .constant(true), dishManager: DishManager(), drinkManager: DrinkManager(), orderManager: OrderManager())
+        CartModal(showModal: .constant(true))
     }
 }

@@ -15,8 +15,7 @@ struct CartItemCard: View {
     @Binding var viewNumber: Int
     @Binding var dish: Dish
     @Binding var drink: Drink
-    @ObservedObject var dishManager : DishManager
-    @ObservedObject var drinkManager : DrinkManager
+    @EnvironmentObject var appState : AppState
     @SwiftUI.Environment(\.managedObjectContext) var context
     
     var body: some View {
@@ -48,7 +47,7 @@ struct CartItemCard: View {
         }
         .onTapGesture {
             if cartItem.type == "dish" {
-                self.dishManager.getDish(id: cartItem.id){ resp in
+                self.appState.dishManager.getDish(id: cartItem.id){ resp in
                     var dish = resp
 
                     dish.quantity = Int(cartItem.quantity)
@@ -56,7 +55,7 @@ struct CartItemCard: View {
                     self.viewNumber = 2
                 }
             } else {
-                self.drinkManager.getDrink(id: cartItem.id){ resp in
+                self.appState.drinkManager.getDrink(id: cartItem.id){ resp in
                     var drink = resp
 
                     drink.quantity = Int(cartItem.quantity)
@@ -70,6 +69,6 @@ struct CartItemCard: View {
 
 struct CartItemCard_Previews: PreviewProvider {
     static var previews: some View {
-        CartItemCard(cartItem: CartItem(), viewNumber: .constant(1), dish: .constant(Dish(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDish(name: "", nickname: "", order: 1), price: 0, description: "")), drink: .constant(Drink(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDrink(name: "", nickname: "", order: 1), price: 0, description: "", specifications: "")), dishManager: DishManager(), drinkManager: DrinkManager())
+        CartItemCard(cartItem: CartItem(), viewNumber: .constant(1), dish: .constant(Dish(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDish(name: "", nickname: "", order: 1), price: 0, description: "")), drink: .constant(Drink(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDrink(name: "", nickname: "", order: 1), price: 0, description: "", specifications: "")))
     }
 }

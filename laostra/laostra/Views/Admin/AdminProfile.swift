@@ -12,8 +12,6 @@ import Combine
 struct AdminProfile: View {
     @State var modal : Bool = false
     @Binding var selection : Int
-    @ObservedObject var drinkManager : DrinkManager
-    @ObservedObject var dishManager : DishManager
     @EnvironmentObject var appState : AppState
     
     var body: some View {
@@ -60,6 +58,6 @@ struct AdminProfile: View {
 
 struct AdminProfile_Previews: PreviewProvider {
     static var previews: some View {
-        AdminProfile(selection: .constant(4), drinkManager: DrinkManager(), dishManager: DishManager())
+        AdminProfile(selection: .constant(4))
     }
 }

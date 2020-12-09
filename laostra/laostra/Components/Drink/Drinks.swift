@@ -11,11 +11,11 @@ import SwiftUI
 struct Drinks: View {
     @State private var search: String = ""
     @State private var filter: String = ""
-    @ObservedObject var drinkManager : DrinkManager
-    @ObservedObject var orderManager : OrderManager
+    @State var drinks: [ Drink ] = []
+    @EnvironmentObject var appState : AppState
 
     var body: some View {
-        let drinks = self.search == "" ? self.drinkManager.drinks : self.drinkManager.drinks.filter{$0.nickname.localizedCaseInsensitiveContains(self.search)}
+        let drinks = self.search == "" ? self.drinks : self.drinks.filter{$0.nickname.localizedCaseInsensitiveContains(self.search)}
         let categories = getDrinkCategories(drinks: drinks)
         
         return VStack {
@@ -28,7 +28,7 @@ struct Drinks: View {
             ScrollView(.vertical) {
                 if !drinks.isEmpty {
                     ForEach(categories, id: \.self) { category in
-                        HorizontalDrinkList(drinks: drinks, category: category, filter: self.filter, drinkManager: self.drinkManager, orderManager: self.orderManager)
+                        HorizontalDrinkList(drinks: drinks, category: category, filter: self.filter)
                     }
                 } else {
                     VStack(alignment: .center) {
@@ -41,19 +41,23 @@ struct Drinks: View {
             .gesture(DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
                 .onEnded({ value in
                     if value.translation.height > 0 && value.translation.width < 100 && value.translation.width > -100 {
-                        self.drinkManager.getDrinks(query: "")
+                        self.appState.drinkManager.getDrinks(query: ""){response in
+                            
+                        }
                     }
                 })
             )
         }
         .onAppear(){
-            self.drinkManager.getDrinks(query: "")
+            self.appState.drinkManager.getDrinks(query: ""){response in
+                self.drinks = self.appState.drinkManager.drinks
+            }
         }
     }
 }
 
 struct Drinks_Previews: PreviewProvider {
     static var previews: some View {
-        Drinks(drinkManager: DrinkManager(), orderManager: OrderManager())
+        Drinks()
     }
 }

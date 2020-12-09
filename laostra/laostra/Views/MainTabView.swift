@@ -22,7 +22,7 @@ struct MainTabView: View {
             } else if user.role == "WAITER" && self.appState.isUserLogged {
                 WaiterTabView()
             } else {
-                UserTabView()
+                UserTabView(user: user)
             }
         }
     }

@@ -11,9 +11,6 @@ import SwiftyJSON
 
 struct Orders: View {
     @State var orders : [ Order ] = []
-    @ObservedObject var dishManager : DishManager
-    @ObservedObject var drinkManager : DrinkManager
-    @ObservedObject var orderManager : OrderManager
     @EnvironmentObject var appState : AppState
     
     var body: some View {
@@ -34,7 +31,7 @@ struct Orders: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 40),
-                        trailing: CartIcon(dishManager: self.dishManager, drinkManager: self.drinkManager, orderManager: self.orderManager)
+                        trailing: CartIcon()
                     )
                 } else {
                     EmptyView()
@@ -42,11 +39,11 @@ struct Orders: View {
             }
             .onAppear{
                 if self.appState.isUserLogged {
-                    self.orderManager.getOrdersByUser{ response in
+                    self.appState.orderManager.getOrdersByUser{ response in
                         let json = JSON(response)
                         
                         if json["ok"] == true {
-                            self.orders = self.orderManager.orders
+                            self.orders = self.appState.orderManager.orders
                         }
                     }
                 }
@@ -57,6 +54,6 @@ struct Orders: View {
 
 struct Orders_Previews: PreviewProvider {
     static var previews: some View {
-        Orders(dishManager: DishManager(), drinkManager: DrinkManager(), orderManager: OrderManager())
+        Orders()
     }
 }

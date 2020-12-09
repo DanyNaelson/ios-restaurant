@@ -15,7 +15,7 @@ class DrinkManager: ObservableObject {
     @Published var drink: Drink = Drink(id: "", status: "", picture: "", name: "", nickname: "", category: CategoryDrink(name: "", nickname: "", order: 1), price: 0, description: "", specifications: "")
     @Published var drinks = [Drink]()
     
-    func getDrinks(query: String) {
+    func getDrinks(query: String, completion: @escaping (Any) -> Void) {
         self.drinks = []
         
         DispatchQueue.main.async {
@@ -28,9 +28,10 @@ class DrinkManager: ObservableObject {
 
                             self.drinks.append(drinkObject)
                         }
+                        completion(value)
 
                     case .failure(let error):
-                        print(error)
+                        completion(error)
                 }
             }
         }

@@ -13,9 +13,9 @@ import SDWebImageSwiftUI
 struct FavoriteDrinks: View {
     @State private var search: String = ""
     @State private var correctResponse : Bool = false
+    @State private var drinks : [Drink] = []
     @State private var favoriteDrinks : [FavoriteDrink] = []
     @Binding var step : Int
-    @ObservedObject var drinkManager : DrinkManager
     @EnvironmentObject var appState : AppState
     
     func fillFavoriteDrinks(drink: Drink) -> Void {
@@ -23,7 +23,7 @@ struct FavoriteDrinks: View {
 
         if index == nil {
             if self.favoriteDrinks.count < 3 {
-                let favoriteDrink = FavoriteDrink(_id: drink.id, picture: drink.picture, name: drink.name, category: drink.category.name, description: drink.description)
+                let favoriteDrink = FavoriteDrink(_id: drink.id, picture: drink.picture, name: drink.name, nickname: drink.nickname, category: drink.category.name, description: drink.description)
                 self.favoriteDrinks.append(favoriteDrink)
             }
         } else {
@@ -55,7 +55,7 @@ struct FavoriteDrinks: View {
     }
 
     var body: some View {
-        let drinks = self.search == "" ? self.drinkManager.drinks : self.drinkManager.drinks.filter{$0.nickname.localizedCaseInsensitiveContains(self.search)}
+        let drinks = self.search == "" ? self.drinks : self.drinks.filter{$0.nickname.localizedCaseInsensitiveContains(self.search)}
 
         return VStack(alignment: .center, spacing: 20) {
             Text(LocalizedStringKey("select_3_drinks"))
@@ -137,14 +137,20 @@ struct FavoriteDrinks: View {
             }
         }
         .onAppear() {
-            self.drinkManager.getDrinks(query: "")
-            self.favoriteDrinks = self.appState.userManager.user.favoriteDrinks
+            self.appState.drinkManager.getDrinks(query: ""){response in
+                let data = JSON(response)
+
+                if data["ok"] == true {
+                    self.favoriteDrinks = self.appState.userManager.user.favoriteDrinks
+                    self.drinks = self.appState.drinkManager.drinks
+                }
+            }
         }
     }
 }
 
 struct FavoriteDrinks_Previews: PreviewProvider {
     static var previews: some View {
-        FavoriteDrinks(step: .constant(2), drinkManager: DrinkManager())
+        FavoriteDrinks(step: .constant(2))
     }
 }

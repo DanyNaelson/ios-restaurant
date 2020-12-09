@@ -11,8 +11,6 @@ import SwiftUI
 struct Discount: View {
     @State var step : Int = 1
     @Binding var showModal : Bool
-    @ObservedObject var drinkManager : DrinkManager
-    @ObservedObject var dishManager : DishManager
     @EnvironmentObject var appState : AppState
     
     var body: some View {
@@ -37,9 +35,9 @@ struct Discount: View {
             case 1:
                 PersonalData(step: self.$step)
             case 2:
-                FavoriteDrinks(step: self.$step, drinkManager: drinkManager)
+                FavoriteDrinks(step: self.$step)
             case 3:
-                FavoriteDishes(step: self.$step, dishManager: dishManager)
+                FavoriteDishes(step: self.$step)
             case 4:
                 Congratulations(showModal: self.$showModal)
             default:
@@ -53,6 +51,6 @@ struct Discount: View {
 
 struct Discount_Previews: PreviewProvider {
     static var previews: some View {
-        Discount(showModal: .constant(true), drinkManager: DrinkManager(), dishManager: DishManager())
+        Discount(showModal: .constant(true))
     }
 }

@@ -13,9 +13,9 @@ import SDWebImageSwiftUI
 struct FavoriteDishes: View {
     @State private var search: String = ""
     @State private var correctResponse : Bool = false
+    @State private var dishes : [Dish] = []
     @State private var favoriteDishes : [FavoriteDish] = []
     @Binding var step : Int
-    @ObservedObject var dishManager : DishManager
     @EnvironmentObject var appState : AppState
     
     func fillFavoriteDishes(dish: Dish) -> Void {
@@ -23,7 +23,7 @@ struct FavoriteDishes: View {
 
         if index == nil {
             if self.favoriteDishes.count < 3 {
-                let favoriteDish = FavoriteDish(_id: dish.id, picture: dish.picture, name: dish.name, category: dish.category.name, description: dish.description)
+                let favoriteDish = FavoriteDish(_id: dish.id, picture: dish.picture, name: dish.name, nickname: dish.nickname, category: dish.category.name, description: dish.description)
                 self.favoriteDishes.append(favoriteDish)
             }
         } else {
@@ -55,7 +55,7 @@ struct FavoriteDishes: View {
     }
     
     var body: some View {
-        let dishes = self.search == "" ? self.dishManager.dishes : self.dishManager.dishes.filter{$0.nickname.localizedCaseInsensitiveContains(self.search)}
+        let dishes = self.search == "" ? self.dishes : self.dishes.filter{$0.nickname.localizedCaseInsensitiveContains(self.search)}
 
         return VStack(alignment: .center, spacing: 20) {
             Text(LocalizedStringKey("select_3_drinks"))
@@ -137,14 +137,20 @@ struct FavoriteDishes: View {
             }
         }
         .onAppear() {
-            self.dishManager.getDishes(query: ""){ response in }
-            self.favoriteDishes = self.appState.userManager.user.favoriteDishes
+            self.appState.dishManager.getDishes(query: ""){ response in
+                let data = JSON(response)
+
+                if data["ok"] == true {
+                    self.favoriteDishes = self.appState.userManager.user.favoriteDishes
+                    self.dishes = self.appState.dishManager.dishes
+                }
+            }
         }
     }
 }
 
 struct FavoriteDishes_Previews: PreviewProvider {
     static var previews: some View {
-        FavoriteDishes(step: .constant(3), dishManager: DishManager())
+        FavoriteDishes(step: .constant(3))
     }
 }

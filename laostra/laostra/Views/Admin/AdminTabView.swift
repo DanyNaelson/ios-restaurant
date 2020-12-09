@@ -18,7 +18,7 @@ struct AdminTabView: View {
     
     var body: some View {
         TabView(selection:$selection) {
-            Home(dishManager: dishManager, drinkManager: drinkManager, orderManager: self.orderManager)
+            Home()
                 .tabItem{
                     Image(systemName: "book.fill")
                     Text(LocalizedStringKey("menu"))
@@ -30,7 +30,7 @@ struct AdminTabView: View {
                     Text(LocalizedStringKey("store"))
             }
             .tag(2)
-            AdminProfile(selection: self.$selection, drinkManager: drinkManager, dishManager: dishManager)
+            AdminProfile(selection: self.$selection)
                 .tabItem{
                     Image(systemName: "person.fill")
                     Text(LocalizedStringKey("profile"))

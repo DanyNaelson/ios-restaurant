@@ -12,6 +12,7 @@ struct FavoriteDish: Decodable {
     var _id : String
     var picture : String
     var name : String
+    var nickname : String
     var category : String
     var description : String
 }

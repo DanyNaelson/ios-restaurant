@@ -61,10 +61,11 @@ func jsonArrayToFavoriteDrinks(array: JSON) -> [ FavoriteDrink ] {
     for drink in array {
         let id = drink.1["_id"].string ?? ""
         let name = drink.1["name"].string ?? ""
+        let nickname = drink.1["nickname"].string ?? ""
         let picture = drink.1["picture"].string ?? ""
         let category = drink.1["category"].string ?? ""
         let description = drink.1["description"].string ?? ""
-        let drink = FavoriteDrink(_id: id, picture: picture, name: name, category: category, description: description)
+        let drink = FavoriteDrink(_id: id, picture: picture, name: name, nickname: nickname, category: category, description: description)
         
         favoriteDrinks.append(drink)
     }
@@ -78,10 +79,11 @@ func jsonArrayToFavoriteDishes(array: JSON) -> [ FavoriteDish ] {
     for dish in array {
         let id = dish.1["_id"].string ?? ""
         let name = dish.1["name"].string ?? ""
+        let nickname = dish.1["nickname"].string ?? ""
         let picture = dish.1["picture"].string ?? ""
         let category = dish.1["category"].string ?? ""
         let description = dish.1["description"].string ?? ""
-        let dish = FavoriteDish(_id: id, picture: picture, name: name, category: category, description: description)
+        let dish = FavoriteDish(_id: id, picture: picture, name: name, nickname: nickname, category: category, description: description)
         
         favoriteDishes.append(dish)
     }

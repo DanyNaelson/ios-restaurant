@@ -12,69 +12,65 @@ import SwiftyJSON
 struct UserTabView: View {
     @State private var selection = 1
     @State private var showModal = false
+    @State var user : User
     @EnvironmentObject var appState : AppState
-    @ObservedObject var dishManager = DishManager()
-    @ObservedObject var drinkManager = DrinkManager()
-    @ObservedObject var orderManager = OrderManager()
     @SwiftUI.Environment(\.managedObjectContext) var context
     
     var body: some View {
-        let user = self.appState.userManager.user
-
         TabView(selection:$selection) {
-            Home(dishManager: self.dishManager, drinkManager: self.drinkManager, orderManager: self.orderManager)
+            Home()
                 .tabItem{
                     Image(systemName: "book.fill")
                     Text(LocalizedStringKey("menu"))
             }
             .tag(1)
-            Orders(dishManager: self.dishManager, drinkManager: self.drinkManager, orderManager: self.orderManager)
+            Orders()
                 .tabItem{
                     Image(systemName: "list.bullet")
                     Text(LocalizedStringKey("orders"))
             }
             .tag(2)
-            .onAppear(){
-                if !self.appState.isUserLogged || user.id == "" {
+            .onAppear{
+                if !self.appState.isUserLogged || self.appState.userManager.user.id == "" {
                     DispatchQueue.main.async {
                         self.showModal = true
                     }
                 }
             }
             .sheet(isPresented: self.$showModal) {
-                LoginMenu(selection: self.$selection, showModal: self.$showModal, drinkManager: drinkManager, dishManager: dishManager).environmentObject(self.appState).environment(\.managedObjectContext, context)
+                LoginMenu(selection: self.$selection, showModal: self.$showModal).environmentObject(self.appState).environment(\.managedObjectContext, context)
             }
-            Promotions(selection: self.$selection, dishManager: self.dishManager, drinkManager: self.drinkManager, orderManager: self.orderManager)
+            Promotions(selection: self.$selection)
                 .tabItem{
                     Image(systemName: "tag.fill")
                     Text(LocalizedStringKey("promotions"))
             }
             .tag(3)
-            .onAppear(){
-                if !self.appState.isUserLogged || user.id == "" {
+            .onAppear{
+                if !self.appState.isUserLogged || self.appState.userManager.user.id == "" {
                     DispatchQueue.main.async {
                         self.showModal = true
                     }
                 }
             }
             .sheet(isPresented: self.$showModal) {
-                LoginMenu(selection: self.$selection, showModal: self.$showModal, drinkManager: drinkManager, dishManager: dishManager).environmentObject(self.appState).environment(\.managedObjectContext, context)
+                LoginMenu(selection: self.$selection, showModal: self.$showModal).environmentObject(self.appState).environment(\.managedObjectContext, context)
             }
-            Profile(selection: self.$selection, drinkManager: drinkManager, dishManager: dishManager, orderManager: self.orderManager)
+            Profile(selection: self.$selection)
                 .tabItem{
                     Image(systemName: "person.fill")
                     Text(LocalizedStringKey("profile"))
             }
             .tag(4)
-            .onAppear(){
-                if !self.appState.isUserLogged || user.id == "" {
+            .onAppear{
+                if !self.appState.isUserLogged || self.appState.userManager.user.id == "" {
                     DispatchQueue.main.async {
                         self.showModal = true
                     }
                 }
             }
             .sheet(isPresented: self.$showModal) {
-                LoginMenu(selection: self.$selection, showModal: self.$showModal, drinkManager: drinkManager, dishManager: dishManager).environmentObject(self.appState).environment(\.managedObjectContext, context)
+                LoginMenu(selection: self.$selection, showModal: self.$showModal).environmentObject(self.appState).environment(\.managedObjectContext, context)
             }
         }
         .accentColor(Color.white)
@@ -98,6 +94,6 @@ struct UserTabView: View {
 
 struct UserTabView_Previews: PreviewProvider {
     static var previews: some View {
-        UserTabView()
+        UserTabView(user: User(id: "", email: "", zipCode: "", role: "USER", nickname: "", confirm: false, birthday: Date(), cellPhone: "", gender: "FEMALE", google: false, facebook: false, withEmail: false, photo: "", favoriteDrinks: [], favoriteDishes: [], promotions: []))
     }
 }

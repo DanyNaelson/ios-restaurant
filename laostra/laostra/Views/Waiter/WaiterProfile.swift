@@ -12,8 +12,6 @@ import Combine
 struct WaiterProfile: View {
     @State var modal : Bool = false
     @Binding var selection : Int
-    @ObservedObject var drinkManager : DrinkManager
-    @ObservedObject var dishManager : DishManager
     @EnvironmentObject var appState : AppState
     
     var body: some View {
@@ -60,6 +58,6 @@ struct WaiterProfile: View {
 
 struct WaiterProfile_Previews: PreviewProvider {
     static var previews: some View {
-        WaiterProfile(selection: .constant(4), drinkManager: DrinkManager(), dishManager: DishManager())
+        WaiterProfile(selection: .constant(4))
     }
 }

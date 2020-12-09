@@ -12,13 +12,10 @@ struct WaiterTabView: View {
     @State private var selection = 1
     @State private var showModal = false
     @EnvironmentObject var appState : AppState
-    @ObservedObject var dishManager = DishManager()
-    @ObservedObject var drinkManager = DrinkManager()
-    @ObservedObject var orderManager = OrderManager()
     
     var body: some View {
         TabView(selection:$selection) {
-            Home(dishManager: dishManager, drinkManager: drinkManager, orderManager: self.orderManager)
+            Home()
                 .tabItem{
                     Image(systemName: "book.fill")
                     Text(LocalizedStringKey("menu"))
@@ -30,7 +27,7 @@ struct WaiterTabView: View {
                     Text(LocalizedStringKey("orders"))
             }
             .tag(2)
-            WaiterProfile(selection: self.$selection, drinkManager: drinkManager, dishManager: dishManager)
+            WaiterProfile(selection: self.$selection)
                 .tabItem{
                     Image(systemName: "person.fill")
                     Text(LocalizedStringKey("profile"))
