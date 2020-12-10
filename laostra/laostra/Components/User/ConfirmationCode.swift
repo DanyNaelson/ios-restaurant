@@ -142,14 +142,19 @@ struct ConfirmationCode: View {
                                         textField.font = UIFont.systemFont(ofSize: 35.0)
                                         textField.textColor = UIColor(named: "primary")
                                         textField.textAlignment = .center
-                                        
+
                                         if index == self.codePosition {
                                             if self.ostraCode.count != 6 {
                                                 textField.becomeFirstResponder()
                                             }
                                             
                                             if textField.text != "" {
+                                                textField.isUserInteractionEnabled = false
                                                 self.codePosition += 1
+                                            }
+                                            
+                                            if self.codeNumbers[index] == "" {
+                                                textField.isUserInteractionEnabled = true
                                             }
                                         }
                                     }
@@ -159,6 +164,7 @@ struct ConfirmationCode: View {
                                     .foregroundColor(Color("primary"))
                                     .onTapGesture(perform: {
                                         self.codeNumbers[index] = ""
+                                        self.codePosition = index
                                     })
                                 Rectangle()
                                     .frame(width: 30, height: 5, alignment: .bottom)
