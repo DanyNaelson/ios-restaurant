@@ -14,7 +14,6 @@ struct LoginMenu: View {
     @State private var viewNumber = 1
     @State private var noCode = true
     @State private var loaderFacebook = false
-    @Binding var selection : Int
     @Binding var showModal : Bool
     @EnvironmentObject var appState : AppState
     
@@ -42,7 +41,7 @@ struct LoginMenu: View {
                         .onTapGesture {
                             withAnimation {
                                 self.showModal.toggle()
-                                self.selection = 1
+                                self.appState.tabNumber = 1
                             }
                     }
                     .transition(.opacity)
@@ -64,9 +63,9 @@ struct LoginMenu: View {
                 case 1:
                     VStack(alignment: .center, spacing: 20) {
                         LoginButton(viewNumber: self.$viewNumber)
-                        AppleButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal)
-                        FacebookButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal)
-                        GoogleButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal)
+                        AppleButton(viewNumber: self.$viewNumber, showModal: self.$showModal)
+                        FacebookButton(viewNumber: self.$viewNumber, showModal: self.$showModal)
+                        GoogleButton(viewNumber: self.$viewNumber, showModal: self.$showModal)
                         VStack(spacing: 0) {
                             Text(LocalizedStringKey("click_to_register"))
                             Text(LocalizedStringKey("here"))
@@ -84,7 +83,7 @@ struct LoginMenu: View {
                     SignUp(email: "", password: "", viewNumber: self.$viewNumber, noCode: self.$noCode)
                         .transition(.scale)
                 case 3:
-                    Login(email: "", password: "", selection: self.$selection, showModal: self.$showModal)
+                    Login(email: "", password: "", showModal: self.$showModal)
                         .transition(.scale)
                 case 4:
                     ConfirmationCode(viewNumber: self.$viewNumber, noCode: self.$noCode)
@@ -94,9 +93,9 @@ struct LoginMenu: View {
                 default:
                     VStack(alignment: .center, spacing: 20) {
                         LoginButton(viewNumber: self.$viewNumber)
-                        AppleButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal)
-                        FacebookButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal)
-                        GoogleButton(viewNumber: self.$viewNumber, selection: self.$selection, showModal: self.$showModal)
+                        AppleButton(viewNumber: self.$viewNumber, showModal: self.$showModal)
+                        FacebookButton(viewNumber: self.$viewNumber, showModal: self.$showModal)
+                        GoogleButton(viewNumber: self.$viewNumber, showModal: self.$showModal)
                         VStack(spacing: 0) {
                             Text(LocalizedStringKey("click_to_register"))
                             Text(LocalizedStringKey("here"))
@@ -131,6 +130,6 @@ struct LoginMenu: View {
 
 struct LoginMenu_Previews: PreviewProvider {
     static var previews: some View {
-        LoginMenu(selection: .constant(1), showModal: .constant(true)).environmentObject(AppState())
+        LoginMenu(showModal: .constant(true)).environmentObject(AppState())
     }
 }

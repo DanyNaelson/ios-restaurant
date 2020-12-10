@@ -11,7 +11,6 @@ import SwiftUI
 struct Promotions: View {
     @State var showNewView = false
     @State var promotions : [ Promotion ] = []
-    @Binding var selection : Int
     @EnvironmentObject var appState : AppState
     
     var body: some View {
@@ -47,6 +46,6 @@ struct Promotions: View {
 
 struct Promotions_Previews: PreviewProvider {
     static var previews: some View {
-        Promotions(selection: .constant(3))
+        Promotions()
     }
 }

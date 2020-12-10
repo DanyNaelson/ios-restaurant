@@ -9,12 +9,11 @@
 import SwiftUI
 
 struct WaiterTabView: View {
-    @State private var selection = 1
     @State private var showModal = false
     @EnvironmentObject var appState : AppState
     
     var body: some View {
-        TabView(selection:$selection) {
+        TabView(selection:self.$appState.tabNumber) {
             Home()
                 .tabItem{
                     Image(systemName: "book.fill")
@@ -27,7 +26,7 @@ struct WaiterTabView: View {
                     Text(LocalizedStringKey("orders"))
             }
             .tag(2)
-            WaiterProfile(selection: self.$selection)
+            WaiterProfile()
                 .tabItem{
                     Image(systemName: "person.fill")
                     Text(LocalizedStringKey("profile"))

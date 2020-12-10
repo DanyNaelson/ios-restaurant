@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct AdminTabView: View {
-    @State private var selection = 1
     @State private var showModal = false
     @EnvironmentObject var appState : AppState
     @ObservedObject var dishManager = DishManager()
@@ -17,7 +16,7 @@ struct AdminTabView: View {
     @ObservedObject var orderManager = OrderManager()
     
     var body: some View {
-        TabView(selection:$selection) {
+        TabView(selection: self.$appState.tabNumber) {
             Home()
                 .tabItem{
                     Image(systemName: "book.fill")
@@ -30,7 +29,7 @@ struct AdminTabView: View {
                     Text(LocalizedStringKey("store"))
             }
             .tag(2)
-            AdminProfile(selection: self.$selection)
+            AdminProfile()
                 .tabItem{
                     Image(systemName: "person.fill")
                     Text(LocalizedStringKey("profile"))

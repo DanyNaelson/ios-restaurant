@@ -7,11 +7,11 @@
 //
 
 import SwiftUI
+import SwiftyJSON
 import Combine
 
 struct Profile: View {
     @State var modal : Bool = false
-    @Binding var selection : Int
     @EnvironmentObject var appState : AppState
     
     var body: some View {
@@ -35,7 +35,7 @@ struct Profile: View {
                         }
                         Button(action: {
                             logout(appState: self.appState)
-                            self.selection = 1
+                            self.appState.tabNumber = 1
                         }){
                             HStack(alignment: .center) {
                                 Spacer()
@@ -64,11 +64,27 @@ struct Profile: View {
                 Discount(showModal: self.$modal).environmentObject(self.appState)
             }
         }
+        .onAppear{
+            if self.appState.isUserLogged {
+                let ostraUserID = UserDefaults.standard.string(forKey: "ostraUserID")!
+
+                self.appState.userManager.getProfile(userID: ostraUserID){ response in
+                    let data = JSON(response)
+
+                    if data["ok"] == false {
+                        if data["err"]["message"] == "logout" {
+                            logout(appState: self.appState)
+                            self.appState.tabNumber = 1
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
 struct Profile_Previews: PreviewProvider {
     static var previews: some View {
-        Profile(selection: .constant(4))
+        Profile()
     }
 }

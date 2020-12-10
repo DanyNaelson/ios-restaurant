@@ -17,7 +17,6 @@ struct Login: View {
     @State var correctResponse : Bool = false
     @State var responseMessage : String = ""
     @State var serverError : String = ""
-    @Binding var selection : Int
     @Binding var showModal : Bool
     @EnvironmentObject var appState : AppState
     @SwiftUI.Environment(\.managedObjectContext) var context
@@ -72,7 +71,7 @@ struct Login: View {
                 }
 
                 Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { timer in
-                    self.selection = 1
+                    self.appState.tabNumber = 1
                     self.showModal = false
                 }
             } else if data["ok"] == false {
@@ -162,6 +161,6 @@ struct Login: View {
 
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        Login(email: "", password: "", selection: .constant(4), showModal: .constant(true))
+        Login(email: "", password: "", showModal: .constant(true))
     }
 }

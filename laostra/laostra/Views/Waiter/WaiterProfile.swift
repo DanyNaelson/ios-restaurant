@@ -11,7 +11,6 @@ import Combine
 
 struct WaiterProfile: View {
     @State var modal : Bool = false
-    @Binding var selection : Int
     @EnvironmentObject var appState : AppState
     
     var body: some View {
@@ -24,7 +23,7 @@ struct WaiterProfile: View {
                         Text(user.nickname)
                         Button(action: {
                             logout(appState: self.appState)
-                            self.selection = 1
+                            self.appState.tabNumber = 1
                         }){
                             HStack(alignment: .center) {
                                 Spacer()
@@ -58,6 +57,6 @@ struct WaiterProfile: View {
 
 struct WaiterProfile_Previews: PreviewProvider {
     static var previews: some View {
-        WaiterProfile(selection: .constant(4))
+        WaiterProfile()
     }
 }

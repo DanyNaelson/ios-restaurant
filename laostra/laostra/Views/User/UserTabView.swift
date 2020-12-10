@@ -10,14 +10,13 @@ import SwiftUI
 import SwiftyJSON
 
 struct UserTabView: View {
-    @State private var selection = 1
     @State private var showModal = false
     @State var user : User
     @EnvironmentObject var appState : AppState
     @SwiftUI.Environment(\.managedObjectContext) var context
     
     var body: some View {
-        TabView(selection:$selection) {
+        TabView(selection:self.$appState.tabNumber) {
             Home()
                 .tabItem{
                     Image(systemName: "book.fill")
@@ -38,9 +37,9 @@ struct UserTabView: View {
                 }
             }
             .sheet(isPresented: self.$showModal) {
-                LoginMenu(selection: self.$selection, showModal: self.$showModal).environmentObject(self.appState).environment(\.managedObjectContext, context)
+                LoginMenu(showModal: self.$showModal).environmentObject(self.appState).environment(\.managedObjectContext, context)
             }
-            Promotions(selection: self.$selection)
+            Promotions()
                 .tabItem{
                     Image(systemName: "tag.fill")
                     Text(LocalizedStringKey("promotions"))
@@ -54,9 +53,9 @@ struct UserTabView: View {
                 }
             }
             .sheet(isPresented: self.$showModal) {
-                LoginMenu(selection: self.$selection, showModal: self.$showModal).environmentObject(self.appState).environment(\.managedObjectContext, context)
+                LoginMenu(showModal: self.$showModal).environmentObject(self.appState).environment(\.managedObjectContext, context)
             }
-            Profile(selection: self.$selection)
+            Profile()
                 .tabItem{
                     Image(systemName: "person.fill")
                     Text(LocalizedStringKey("profile"))
@@ -70,11 +69,11 @@ struct UserTabView: View {
                 }
             }
             .sheet(isPresented: self.$showModal) {
-                LoginMenu(selection: self.$selection, showModal: self.$showModal).environmentObject(self.appState).environment(\.managedObjectContext, context)
+                LoginMenu(showModal: self.$showModal).environmentObject(self.appState).environment(\.managedObjectContext, context)
             }
         }
         .accentColor(Color.white)
-        .onAppear(){
+        .onAppear{
             if self.appState.isUserLogged {
                 let ostraUserID = UserDefaults.standard.string(forKey: "ostraUserID")!
 

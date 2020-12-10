@@ -131,4 +131,5 @@ func logout(appState: AppState){
     UserDefaults.standard.set(nil, forKey: "ostraRefreshToken")
     UserDefaults.standard.set(nil, forKey: "ostraUserID")
     appState.isUserLogged = false
+    appState.userManager = UserManager()
 }

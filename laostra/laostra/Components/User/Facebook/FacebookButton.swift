@@ -17,7 +17,6 @@ struct FacebookButton: View {
     @State private var errorMessage = ""
     @State var showingPopup : Bool = false
     @Binding var viewNumber : Int
-    @Binding var selection : Int
     @Binding var showModal : Bool
     @EnvironmentObject var appState : AppState
     @SwiftUI.Environment(\.managedObjectContext) var context
@@ -60,7 +59,7 @@ struct FacebookButton: View {
                 if data["signUp"] == true {
                     self.viewNumber = 5
                 } else {
-                    self.selection = 1
+                    self.appState.tabNumber = 1
                     self.showModal = false
                 }
             } else if data["ok"] == false {
@@ -105,6 +104,6 @@ struct FacebookButton: View {
 
 struct FacebookButton_Previews: PreviewProvider {
     static var previews: some View {
-        FacebookButton(viewNumber: .constant(1), selection: .constant(4), showModal: .constant(true))
+        FacebookButton(viewNumber: .constant(1), showModal: .constant(true))
     }
 }
