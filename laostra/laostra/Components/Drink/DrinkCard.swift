@@ -21,20 +21,17 @@ struct DrinkCard: View {
                 AnimatedImage(url: URL(string: drink.picture))
                     .resizable()
                     .scaledToFit()
+                    .cornerRadius(5)
                     .frame(width: 100, height: 120)
-                    .onTapGesture {
-                        self.showModal.toggle()
-                    }
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 0)
                 Group {
                     VStack(alignment: .leading) {
                         Text("\(drink.name)")
                             .padding(5)
-                        Text("$ \(drink.price)")
-                            .padding(5)
                     }
                 }
-                .background(Color("primary"))
-                .foregroundColor(Color.white)
+                .foregroundColor(Color("textUnselected"))
+                .font(Font.headline.weight(.bold))
             }
             .sheet(isPresented: self.$showModal) {
                 CartModal(drink: self.drink, viewNumber: 4, showModal: self.$showModal)
@@ -43,7 +40,9 @@ struct DrinkCard: View {
             }
         }
         .frame(width: 150, height: 200)
-        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 0)
+        .onTapGesture {
+            self.showModal.toggle()
+        }
     }
 }
 

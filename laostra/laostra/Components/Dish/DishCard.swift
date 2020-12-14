@@ -21,20 +21,17 @@ struct DishCard: View {
                 AnimatedImage(url: URL(string: dish.picture))
                     .resizable()
                     .scaledToFit()
+                    .cornerRadius(5)
                     .frame(width: 100, height: 120)
-                    .onTapGesture {
-                        self.showModal.toggle()
-                    }
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 0)
                 Group {
                     VStack(alignment: .leading) {
                         Text("\(dish.name)")
                             .padding(5)
-                        Text("$ \(dish.price)")
-                            .padding(5)
                     }
                 }
-                    .background(Color("primary"))
-                    .foregroundColor(Color.white)
+                .foregroundColor(Color("textUnselected"))
+                .font(Font.headline.weight(.bold))
             }
             .sheet(isPresented: self.$showModal) {
                 CartModal(dish: self.dish, viewNumber: 3, showModal: self.$showModal)
@@ -43,6 +40,14 @@ struct DishCard: View {
             }
         }
         .frame(width: 150, height: 200)
-        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 0)
+        .onTapGesture {
+            self.showModal.toggle()
+        }
+    }
+}
+
+struct DishCard_Previews: PreviewProvider {
+    static var previews: some View {
+        DishCard(dish: Dish(id: "565765", status: "ACTIVE", picture: "", name: "Coctel de camarón", nickname: "coctel-de-camaron", category: CategoryDish(name: "Barra Fría", nickname: "barra-fria", order: 1), price: 90, description: "Coctel de camarón"))
     }
 }

@@ -26,7 +26,7 @@ struct Dishes: View {
                 CategoryFilter(filter: $filter, filters: categories)
             }
             Spacer()
-            ScrollView(.vertical) {
+            ScrollView(.vertical, showsIndicators: false) {
                 if !dishes.isEmpty {
                     ForEach(categories, id: \.self) { category in
                         HorizontalDishList(dishes: dishes, category: category, filter: self.filter)
@@ -39,19 +39,19 @@ struct Dishes: View {
                     }
                 }
             }
-            .gesture(DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
-                .onEnded({ value in
-                    if value.translation.height > 0 && value.translation.width < 100 && value.translation.width > -100 {
-                        self.appState.dishManager.getDishes(query: ""){ response in
-                            let json = JSON(response)
-                            
-                            if json["ok"] == true {
-                                self.dishes = self.appState.dishManager.dishes
-                            }
-                        }
-                    }
-                })
-            )
+//            .gesture(DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
+//                .onEnded({ value in
+//                    if value.translation.height > 0 && value.translation.width < 100 && value.translation.width > -100 {
+//                        self.appState.dishManager.getDishes(query: ""){ response in
+//                            let json = JSON(response)
+//                            
+//                            if json["ok"] == true {
+//                                self.dishes = self.appState.dishManager.dishes
+//                            }
+//                        }
+//                    }
+//                })
+//            )
         }
         .onAppear(){
             self.appState.dishManager.getDishes(query: ""){ response in

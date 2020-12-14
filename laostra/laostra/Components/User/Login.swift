@@ -55,9 +55,15 @@ struct Login: View {
 
                     if !cartItems.isEmpty {
                         let userID = UserDefaults.standard.string(forKey: "ostraUserID")!
+                        let myCartItems = try self.context.fetch(CartItem.getItemsByOwner(ownerId: userID))
 
                         for cartItem in cartItems {
-                            cartItem.owner_id = userID
+                            if let cartItemFound = myCartItems.first(where: {$0.id == cartItem.id}) {
+                                cartItemFound.quantity += cartItem.quantity
+                                self.context.delete(cartItem)
+                            } else {
+                                cartItem.owner_id = userID
+                            }
                         }
 
                         do{

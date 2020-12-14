@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SwiftyJSON
 
 struct Drinks: View {
     @State private var search: String = ""
@@ -25,7 +26,7 @@ struct Drinks: View {
                 CategoryFilter(filter: $filter, filters: categories)
             }
             Spacer()
-            ScrollView(.vertical) {
+            ScrollView(.vertical, showsIndicators: false) {
                 if !drinks.isEmpty {
                     ForEach(categories, id: \.self) { category in
                         HorizontalDrinkList(drinks: drinks, category: category, filter: self.filter)
@@ -38,19 +39,27 @@ struct Drinks: View {
                     }
                 }
             }
-            .gesture(DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
-                .onEnded({ value in
-                    if value.translation.height > 0 && value.translation.width < 100 && value.translation.width > -100 {
-                        self.appState.drinkManager.getDrinks(query: ""){response in
-                            
-                        }
-                    }
-                })
-            )
+//            .gesture(DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
+//                .onEnded({ value in
+//                    if value.translation.height > 0 && value.translation.width < 100 && value.translation.width > -100 {
+//                        self.appState.drinkManager.getDrinks(query: ""){{ response in
+//                            let json = JSON(response)
+//
+//                            if json["ok"] == true {
+//                                self.drinks = self.appState.drinkManager.drinks
+//                            }
+//                        }
+//                    }
+//                })
+//            )
         }
         .onAppear(){
             self.appState.drinkManager.getDrinks(query: ""){response in
-                self.drinks = self.appState.drinkManager.drinks
+                let json = JSON(response)
+                
+                if json["ok"] == true {
+                    self.drinks = self.appState.drinkManager.drinks
+                }
             }
         }
     }
